@@ -24,3 +24,13 @@ export const protectedRoutes = [
         pathName: 'Аккаунт'
     }
 ]
+
+export const promoLinks = [{
+    linkName: 'О проекте'
+},
+{
+    linkName: 'Технологии',
+}, {
+    linkName: 'Студент',
+}
+]

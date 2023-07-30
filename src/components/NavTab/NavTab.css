@@ -1,0 +1,15 @@
+.promo__link {
+    width: 96px;
+    height: 36px;
+    border-radius: 10px;
+    background: #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}

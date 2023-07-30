@@ -1,0 +1,131 @@
+.aboutProject {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 608px;
+}
+
+.aboutProject__container {
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.section__heading {
+    color: #FFF;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin-top: 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #DADADA;
+}
+
+.aboutProject__heading {
+    margin-bottom: 70px;
+
+}
+
+.aboutProject__info {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 110px;
+}
+
+.aboutProject__info-block {
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-block__title {
+    color: #FFF;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.info-block__subtitle {
+    color: #FFF;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    max-width: 500px;
+    margin-bottom: 0;
+}
+
+.aboutProject__timeline {
+    width: 100%;
+    display: flex;
+}
+
+.timelane__view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timelane__view_backend {
+    flex: 0 228px;
+}
+
+.timelane__view_backend>.timeline__process {
+    background: #3DDC84;
+}
+
+.timelane__view_frontend>.timeline__process {
+    background: #303030;
+}
+
+.timelane__view_backend>.timeline__process>.timeline__title {
+    color: #000;
+}
+
+.timelane__view_frontend>.timeline__process>.timeline__title {
+    color: white;
+}
+
+.timelane__view_frontend {
+    flex: 1 auto
+}
+
+
+.timeline__process {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    margin-bottom: 14px;
+}
+
+.timeline__title {
+    text-align: center;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    line-height: normal;
+}
+
+.timeline__subtitle {
+    color: #8B8B8B;
+    text-align: center;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    margin: 0;
+}

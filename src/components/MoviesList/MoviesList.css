@@ -1,0 +1,46 @@
+.movies {
+    padding-right: 70px;
+    padding-left: 70px;
+    padding-bottom: 80px;
+
+}
+
+.movies__card-list {
+    list-style: none;
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 24px;
+    grid-row-gap: 30px;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    border-top: 1px solid #424242;
+}
+
+.show-more__button_visible {
+    width: 320px;
+    height: 36px;
+    border: 1px solid #424242;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #202020;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.movies__show-more{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.show-more__button_hidden {
+    display: none;
+}

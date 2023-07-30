@@ -1,4 +1,4 @@
-.header__container:has(.header__navigation.authorized) {
+.header__content:has(.header__navigation.authorized) {
     width: 100%;
 }
 

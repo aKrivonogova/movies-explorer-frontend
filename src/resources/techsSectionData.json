@@ -1,0 +1,14 @@
+{
+    "techsHeading": "Технологии",
+    "techsTitle": "7 технологий",
+    "techSibtitle": "На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.",
+    "techsList": [
+        "HTML",
+        "CSS",
+        "JS",
+        "React",
+        "Git",
+        "Express.js",
+        "mongoDB"
+    ]
+}

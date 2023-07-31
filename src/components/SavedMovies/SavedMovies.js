@@ -5,10 +5,8 @@ import MoviesList from "../MoviesList/MoviesList";
 function SavedMovies({ loggedIn, locationPath }) {
     return (
         <>
-            <Header loggedIn={loggedIn} />
             <SearchForm></SearchForm>
             <MoviesList locationPath={locationPath}></MoviesList>
-            <Footer></Footer>
         </>
     )
 }

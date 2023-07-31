@@ -4,7 +4,7 @@ import './Register.css'
 function Register() {
     return (
         <>
-            <section className="login">
+            <section className="register auth">
                 <div className='register__container auth__container'>
                     <Logo></Logo>
                     <h2 className='register__title auth__title'>Добро пожаловать!</h2>

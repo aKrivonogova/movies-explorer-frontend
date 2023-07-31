@@ -13,9 +13,14 @@ function MoviesList({ locationPath }) {
                         ))
                     }
                 </ul>
-                <div className="movies__show-more">
-                    <button className={movies.length >= 10 ? 'show-more__button_visible' : 'show-more__button_hidden'}>Еще</button>
-                </div>
+
+                {
+                    locationPath === '/movies' ?
+                        <div className="movies__show-more">
+                            <button className={movies.length >= 5 ? 'show-more__button_visible' : 'show-more__button_hidden'}>Еще</button>
+                        </div> : null
+                }
+
             </div>
         </>
     )

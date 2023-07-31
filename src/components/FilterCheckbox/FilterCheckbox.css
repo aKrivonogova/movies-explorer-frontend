@@ -16,7 +16,7 @@
     margin: 0;
     vertical-align: top;
     background-color: #EBEBEB;
-    margin-right: 14px;
+    margin-right: 11px;
     border-radius: 30px;
     outline: none;
     cursor: pointer;
@@ -52,4 +52,31 @@
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .short-films__checkbox {
+        margin-bottom: 4px;
+    }
+
+    .short-films {
+        padding-left: 19px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .short-films {
+        padding: 0;
+        border: none;
+    }
+
+    .short-films__checkbox {
+        margin-bottom: 4px;
+        margin-right: 10px;
+    }
+
+    .short-films__span {
+        font-size: 11px;
+        line-height: 18px;
+    }
 }

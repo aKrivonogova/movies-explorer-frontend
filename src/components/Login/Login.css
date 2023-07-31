@@ -1,18 +1,16 @@
-.login {
+.auth {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.login__container {
-    padding-bottom: 70px;
 }
 
 .auth__container {
     width: 396px;
     display: flex;
     padding-top: 70px;
+    padding-bottom: 70px;
     flex-direction: column;
 }
 
@@ -82,6 +80,15 @@
     padding-bottom: 10px;
 }
 
+.auth__input:focus {
+    font-weight: 500;
+    border-bottom-color: #4285F4;
+}
+
+.auth__link:hover {
+    opacity: 0.6;
+}
+
 .auth__error {
     color: #EE3465;
     font-size: 10px;
@@ -90,8 +97,6 @@
     padding-top: 6px;
     line-height: normal;
 }
-
-
 
 .auth__submit-button {
     border-radius: 3px;
@@ -108,12 +113,12 @@
     font-weight: 500;
     line-height: normal;
     align-items: center;
+    transition: opacity 0.2s linear;
 }
 
 .auth__subtitle {
     color: #8B8B8B;
     text-align: center;
-    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -129,9 +134,62 @@
     font-weight: 400;
     line-height: normal;
     text-decoration: none;
+    transition: opacity 0.2s ease;
 }
 
 .login__submit-button {
     margin-top: 216px;
     margin-bottom: 16px;
+}
+
+.login__submit-button:disabled {
+    background: #F8F8F8;
+    color: #C2C2C2;
+}
+
+.auth__submit-button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width:768px) {
+    .auth__container {
+        padding-top: 232px;
+        padding-bottom: 232px;
+    }
+}
+
+@media (max-width: 425px) {
+    .auth__container {
+        width: 260px;
+        padding-top: 56px;
+        padding-bottom: 30px;
+    }
+
+    .auth__container>.logo {
+        align-self: center;
+        margin-bottom: 50px;
+    }
+
+    .auth__title {
+        align-self: center;
+        margin-bottom: 80px;
+    }
+
+    .auth__input-name {
+        padding-top: 24px;
+    }
+
+    .auth__submit-button {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    .auth__subtitle,
+    .auth__link {
+        font-size: 12px;
+    }
+
+    .login__submit-button {
+        margin-top: 300px;
+    }
 }

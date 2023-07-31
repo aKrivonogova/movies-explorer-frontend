@@ -12,7 +12,6 @@ function Profile({ loggedIn }) {
 
     return (
         <>
-            <Header loggedIn={loggedIn}></Header>
             <section className="profile">
                 <div className="profile__container">
                     <h2 className="profile__title">Привет, Виталий!</h2>
@@ -29,7 +28,7 @@ function Profile({ loggedIn }) {
                         </fieldset>
                         <span className={isFormDisabled ? 'profile__form-error profile__form-error-hidden' : 'profile__form-error'}>При обновлении профиля произошла ошибка.</span>
                         {isFormDisabled ? <button className="profile__button profile__button_type_edit" onClick={handleEditProfileClick}>Редактировать</button> :
-                            <button className="profile__button profile__button_type_save">Сохранить</button>}
+                            <button disabled={!isFormDisabled} className="profile__button profile__button_type_save">Сохранить</button>}
                     </form>
                     <Link to="/" className={isFormDisabled ? 'profile__signout-link' : 'profile__signout-link profile__signout-link-hidden'}>Выйти из аккаунта</Link>
                 </div>

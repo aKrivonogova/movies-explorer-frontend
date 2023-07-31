@@ -1,5 +1,4 @@
 .movies__card-item {
-    width: 364px;
     background: #222;
     box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
     display: flex;
@@ -59,10 +58,24 @@
 .movies__card-button_save {
     background-image: url('../../images/saveMoviesButtonisActive.svg');
 }
-.movies__card-button_not-save{
+
+.movies__card-button_not-save {
     background-color: #313131;
     background-image: url('../../images//saveMoviesButtonNotActive.svg');
 }
+
 .movies__card-button_delete {
     background-image: url('../../images/deletebutton.svg');
+}
+
+@media screen and (max-width: 768px) {
+    .movies__card-image {
+        height: 190px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .movies__card-image {
+        height: 168px;
+    }
 }

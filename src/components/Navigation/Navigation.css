@@ -9,7 +9,6 @@
 
 .header__link {
     color: #FFF;
-    font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -68,5 +67,27 @@
 }
 
 @media (max-width: 768px) {
-    
+    .header__navigation.authorized {
+        display: none;
+    }
+
+    .no-authorized>.header__link:last-of-type {
+        width: 76px;
+        height: 32px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .no-authorized>.header__link:last-of-type {
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
+    }
+
+    .no-authorized>.header__link:first-of-type {
+        margin-right: 14px;
+        font-size: 12px;
+    }
 }

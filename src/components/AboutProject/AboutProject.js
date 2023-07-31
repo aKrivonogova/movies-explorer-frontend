@@ -4,7 +4,7 @@ function AboutProject(props) {
     let aboutProjectData = require('../../resources/aboutProjectSectionData.json');
     return (
         <>
-            <section className="aboutProject">
+            <section className="aboutProject" id='aboutProject'>
                 <div className="aboutProject__container">
                     <h2 className="aboutProject__heading section__heading">
                         {aboutProjectData.aboutProjectHeading}

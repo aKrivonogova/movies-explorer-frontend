@@ -1,10 +1,10 @@
 export const authRoutes = [
     {
-        path: '/sign-up',
+        path: '/signup',
         pathName: 'Регистрация'
     },
     {
-        path: '/sign-in',
+        path: '/signin',
         pathName: 'Войти'
     }
 ]
@@ -25,12 +25,3 @@ export const protectedRoutes = [
     }
 ]
 
-export const promoLinks = [{
-    linkName: 'О проекте'
-},
-{
-    linkName: 'Технологии',
-}, {
-    linkName: 'Студент',
-}
-]

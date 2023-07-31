@@ -5,7 +5,7 @@ function AboutMe() {
     let aboutMeData = require('../../resources/aboutMeSectionData.json');
     return (
         <>
-            <section className="aboutMe">
+            <section className="aboutMe" id="aboutMe">
                 <div className='aboutMe__container'>
                     <h3 className='aboutMe__heading section__heading'>{aboutMeData.aboutMeHeading} </h3>
                     <div className='aboutMe__content'>

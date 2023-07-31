@@ -3,15 +3,15 @@
     "promoLinks": [
         {
             "linkName": "О проекте",
-            "linkPath": ""
+            "linkPath": "#aboutProject"
         },
         {
             "linkName": "Технологии",
-            "linkPath": ""
+            "linkPath": "#techs"
         },
         {
-            "linkName": "Технологии",
-            "linkPath": "Студент"
+            "linkName": "Студент",
+            "linkPath": "#aboutMe"
         }
     ]
 }

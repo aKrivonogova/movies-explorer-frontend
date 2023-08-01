@@ -3,7 +3,7 @@ function Techs() {
     let techsData = require('../../resources/techsSectionData.json');
     return (
         <>
-            <section className="techs" id='techs'>
+            <section className="techs section" id='techs'>
                 <div className='techs__container'>
                     <h3 className="techs__heading section__heading">{techsData.techsHeading}</h3>
                     <h1 className="techs__title">{techsData.techsTitle}</h1>

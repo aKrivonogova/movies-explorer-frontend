@@ -53,6 +53,12 @@
     outline: none;
     background-repeat: no-repeat;
     background-position: center;
+    transition: opacity 0.2s ease-in;
+}
+
+.movies__card-button:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .movies__card-button_save {

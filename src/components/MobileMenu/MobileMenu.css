@@ -41,7 +41,13 @@
     top: 27px;
     right: 27px;
     z-index: 30;
+    transition: opacity 0.2s ease-in;
 }
+.mobile-menu__button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 
 .mobile-menu__navigation {
     padding-top: 159px;

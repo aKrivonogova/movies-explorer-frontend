@@ -109,6 +109,10 @@
     margin-bottom: 16px;
     transition: all 0.2 ease-in;
 }
+.profile__button{
+    cursor: pointer;
+}
+
 
 .profile__button_type_edit:hover {
     color: #CBCBCB;

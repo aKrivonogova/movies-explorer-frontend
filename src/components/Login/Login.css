@@ -14,7 +14,7 @@
     flex-direction: column;
 }
 
-.auth__container>.logo {
+.auth__container>.logo-link {
     margin-bottom: 40px;
 }
 
@@ -115,6 +115,7 @@
     align-items: center;
     transition: opacity 0.2s linear;
 }
+ 
 
 .auth__subtitle {
     color: #8B8B8B;
@@ -149,6 +150,7 @@
 
 .auth__submit-button:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
 @media screen and (max-width:768px) {
@@ -165,7 +167,7 @@
         padding-bottom: 30px;
     }
 
-    .auth__container>.logo {
+    .auth__container>.logo-link {
         align-self: center;
         margin-bottom: 50px;
     }

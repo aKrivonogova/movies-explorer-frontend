@@ -14,7 +14,7 @@ function Footer() {
                             {
                                 footerData.footerLinks.map((link, index) => (
                                     <li key={index} className='footer__link-item'>
-                                        <a  className='footer__link' href={link.footerLinkPath}>{link.footerLinkTitle}</a>
+                                        <a  rel="noreferrer" target="_blank" className='footer__link' href={link.footerLinkPath}>{link.footerLinkTitle}</a>
                                     </li>
                                 ))
                             }

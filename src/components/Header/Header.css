@@ -30,5 +30,10 @@
     .header {
         padding-left: 14px;
         padding-right: 14px;
+        padding-top: 24px;
+    }
+
+    .content-between {
+        align-items: center;
     }
 }

@@ -43,16 +43,18 @@ function App() {
   return (
     <div className="App">
       {showHeaderElement && <Header loggedIn={loggedIn} handleOpenMenu={handleOpenMenu} />}
-      <Routes>
-        <Route path="/" element={<Main/>} />
-        <Route path="/movies" element={<Movies locationPath={location.pathname}  isLoading={isLoading}/>} />
-        <Route path="/saved-movies" element={<SavedMovies  locationPath={location.pathname} />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/notfound" element={<NotFound />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-      </Routes>
-      {loggedIn ? <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleCloseMobileMenu={handleCloseMobileMenu} /> : null}
+      <main className='main'>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/movies" element={<Movies locationPath={location.pathname} isLoading={isLoading} />} />
+          <Route path="/saved-movies" element={<SavedMovies locationPath={location.pathname} />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+        </Routes>
+        {loggedIn ? <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleCloseMobileMenu={handleCloseMobileMenu} /> : null}
+      </main>
       {showFooterElement && <Footer />}
     </div >
   );

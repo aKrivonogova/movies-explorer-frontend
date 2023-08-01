@@ -1,4 +1,4 @@
-import Logo from '../Logo/Logo'
+import LogoLink from '../LogoLink/LogoLink';
 import { Link } from 'react-router-dom';
 import './Login.css'
 function Login() {
@@ -6,7 +6,7 @@ function Login() {
         <>
             <section className="login auth">
                 <div className='login__container auth__container'>
-                    <Logo></Logo>
+                <LogoLink/>
                     <h2 className='login__title auth__title'>Рады видеть!</h2>
                     <form className='login__form auth__form' noValidate>
                         <fieldset className="login__fieldset auth__fieldset">

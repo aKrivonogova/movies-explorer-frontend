@@ -38,8 +38,10 @@
 }
 
 
+
 .show-more__button_visible:hover{
     opacity: 0.6;
+    cursor: pointer;
 }
 .movies__show-more {
     margin-top: 50px;

@@ -13,7 +13,7 @@ function AboutMe() {
                             <h2 className='aboutMe__title'>{aboutMeData.aboutMeTitle}</h2>
                             <p className='aboutMe__subtitle'>{aboutMeData.aboutMeDescription}</p>
                             <p className='aboutMe__description'>{aboutMeData.aboutMeInformation}</p>
-                            <a href={aboutMeData.aboutMeLinkPath} alt="ссылка на gitHub" className='aboutMe__link'>{aboutMeData.aboutMeLink}</a>
+                            <a rel="noreferrer" href={aboutMeData.aboutMeLinkPath} target="_blank" alt="ссылка на gitHub" className='aboutMe__link'>{aboutMeData.aboutMeLink}</a>
                         </div>
                         <img src={studentImage} alt="" className="aboutMe__image" />
                     </div>

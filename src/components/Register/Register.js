@@ -1,4 +1,4 @@
-import Logo from '../Logo/Logo'
+import LogoLink from '../LogoLink/LogoLink';
 import { Link } from 'react-router-dom';
 import './Register.css'
 function Register() {
@@ -6,7 +6,7 @@ function Register() {
         <>
             <section className="register auth">
                 <div className='register__container auth__container'>
-                    <Logo></Logo>
+                    <LogoLink/>
                     <h2 className='register__title auth__title'>Добро пожаловать!</h2>
                     <form className='register__form auth__form' noValidate>
                         <fieldset className="register__fieldset auth__fieldset">

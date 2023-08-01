@@ -37,6 +37,10 @@
     background: transparent;
     border: none;
     width: 100%;
+    color: white;
+}
+.search__input:focus{
+    border-bottom: 1px solid #4285F4;
 }
 
 .search__input::placeholder {
@@ -60,6 +64,12 @@
     border: none;
     padding: 0;
     margin-right: 22px;
+    transition: opacity 0.2s ease-in;
+}
+
+.search__button:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 768px) {

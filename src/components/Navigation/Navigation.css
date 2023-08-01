@@ -17,7 +17,7 @@
     transition: all 0.2 ease-in;
 }
 
-.header__link:hover{
+.header__link:hover {
     opacity: 0.7;
 }
 
@@ -30,6 +30,8 @@
     font-size: 13px;
     font-weight: 400px;
 }
+
+
 
 .authorized>.header__link:first-of-type {
     padding-left: 44px;
@@ -53,6 +55,11 @@
 .no-authorized>.header__link:first-of-type {
     margin-right: 30px;
 }
+
+.no-authorized>.header__link:last-of-type:hover {
+    cursor: pointer
+}
+
 
 .no-authorized>.header__link:last-of-type {
     width: 76px;
@@ -93,6 +100,6 @@
 
     .no-authorized>.header__link:first-of-type {
         margin-right: 14px;
-        font-size: 12px;
+        font-size: 10px;
     }
 }

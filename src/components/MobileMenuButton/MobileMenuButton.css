@@ -12,10 +12,13 @@
         border: none;
         display: block;
         margin-left: auto;
+        transition: opacity 0.2s ease-in;
+
     }
 
     .mobile-menu__burger-button:hover{
-        transition: opacity 0.6s ease-in;
+        opacity: 0.6;
+        cursor: pointer;
     }
 }
 

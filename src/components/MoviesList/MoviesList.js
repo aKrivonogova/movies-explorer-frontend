@@ -9,7 +9,7 @@ function MoviesList({ locationPath }) {
                 <ul className="movies__card-list">
                     {
                         movies.map((card, index) => (
-                            <MoviesCard locationPath={locationPath} card={card} />
+                            <MoviesCard key={index} locationPath={locationPath} card={card} />
                         ))
                     }
                 </ul>

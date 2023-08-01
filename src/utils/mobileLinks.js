@@ -1,19 +1,19 @@
 export const links = [
     {
-        linkName: 'Главная', 
+        linkName: 'Главная',
         linkPath: '/'
-    }, 
+    },
     {
-        linkName: 'Фильмы', 
+        linkName: 'Фильмы',
         linkPath: '/movies'
-    }, 
+    },
     {
-        linkName: 'Сохраненные фильмы', 
+        linkName: 'Сохраненные фильмы',
         linkPath: '/saved-movies'
-    }, 
+    },
 ]
 
 export const profileLink = {
-    linkName: "Аккаунт", 
-    linkPath: "/Profile"
+    linkName: "Аккаунт",
+    linkPath: "/profile"
 }

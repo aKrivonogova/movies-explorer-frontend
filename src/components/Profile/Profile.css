@@ -66,6 +66,10 @@
     outline: none;
 }
 
+.profile__input-container:has(.profile__input:focus) {
+    border-bottom: 1px solid #4285F4;
+}
+
 .profile__input::placeholder,
 .profile__input {
     color: #FFF;
@@ -109,7 +113,8 @@
     margin-bottom: 16px;
     transition: all 0.2 ease-in;
 }
-.profile__button{
+
+.profile__button {
     cursor: pointer;
 }
 

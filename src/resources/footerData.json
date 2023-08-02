@@ -1,0 +1,14 @@
+{
+    "footerTitle": "Учебный проект Яндекс.Практикум х BeatFilm.",
+    "footerYear": "2020",
+    "footerLinks": [
+        {
+            "footerLinkTitle": "Яндекс.Практикум",
+            "footerLinkPath": "https://practicum.yandex.ru/"
+        },
+        {
+            "footerLinkTitle": "GitHub",
+            "footerLinkPath": "https://github.com/"
+        }
+    ]
+}

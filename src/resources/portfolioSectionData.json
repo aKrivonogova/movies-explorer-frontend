@@ -1,0 +1,17 @@
+{
+    "portfolioTitle": "Портфолио",
+    "portfolioList": [
+        {
+            "jobName": "Статичный сайт",
+            "jobLinkPath": "https://github.com/"
+        },
+        {
+            "jobName": "Адаптивный сайт",
+            "jobLinkPath": "https://github.com/"
+        },
+        {
+            "jobName": "Одностраничное приложение",
+            "jobLinkPath": "https://github.com/"
+        }
+    ]
+}

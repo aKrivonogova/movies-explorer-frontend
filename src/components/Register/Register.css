@@ -1,0 +1,10 @@
+.register__submit-button{
+    margin-top: 142px;
+    margin-bottom: 16px;
+}
+
+@media screen and (max-width: 425px) {
+    .register__submit-button{
+        margin-top: 222px;
+    }
+}

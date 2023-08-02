@@ -1,0 +1,32 @@
+.promo__link-item {
+    width: 96px;
+    height: 36px;
+    border-radius: 10px;
+    background: #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.promo__link {
+    text-decoration: none;
+    color: #FFF;
+    transition: all 0.2s linear;
+}
+
+.promo__link:hover {
+    color: #CBCBCB;
+}
+
+@media (max-width: 425px) {
+    .promo__link-item {
+        width: 82px;
+        height: 26px;
+        font-size: 10px;
+    }
+}

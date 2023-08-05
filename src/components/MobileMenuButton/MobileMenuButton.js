@@ -1,9 +1,9 @@
 import './MobileMenuButton.css'
 
-function MobileMenuButton({ handleOpenMenu }) {
+function MobileMenuButton({ handleOpenMobileMenu }) {
     return (
         <>
-            <button onClick={handleOpenMenu} className="mobile-menu__burger-button"></button>
+            <button onClick={handleOpenMobileMenu} className="mobile-menu__burger-button"></button>
         </>
     )
 }

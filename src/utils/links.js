@@ -9,7 +9,6 @@ export const authRoutes = [
     }
 ]
 
-
 export const protectedRoutes = [
     {
         path: '/movies',

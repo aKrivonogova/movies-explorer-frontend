@@ -7,56 +7,38 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Register from '../Register/Register';
-import Header from '../Header/Header';
 import { useEffect, useState } from 'react';
-import MobileMenu from '../MobileMenu/MobileMenu';
-import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import CurrentUserContext from '../Context/Context';
+import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 function App() {
-
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const showHeaderElement = ['/movies', '/saved-movies', '/', '/profile', ''].includes(
-    location.pathname
-  );
-  const showFooterElement = ['/movies', '/saved-movies', '/'].includes(
-    location.pathname
-  );
-
-  const protectedRoutes = ['/movies', '/saved-movies', '/profile', ''];
-
-  useEffect(() => {
-    protectedRoutes.includes(location.pathname) ? setLoggedIn(true) : setLoggedIn(false);
-  })
-
-
-  function handleOpenMenu() {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  }
-
-  function handleCloseMobileMenu() {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  }
-
-
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [currentUser, setCurrentUser] = useState([]);
   return (
-    <div className="App">
-      {showHeaderElement && <Header loggedIn={loggedIn} handleOpenMenu={handleOpenMenu} />}
-      <main className='main'>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies locationPath={location.pathname} isLoading={isLoading} />} />
-          <Route path="/saved-movies" element={<SavedMovies locationPath={location.pathname} />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        </Routes>
-        {loggedIn ? <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleCloseMobileMenu={handleCloseMobileMenu} /> : null}
-      </main>
-      {showFooterElement && <Footer />}
-    </div >
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App">
+        <main className='main'>
+          <Header isLoggedIn={isLoggedIn} />
+          <Routes>
+            <Route path='/' element={<Main
+              isLoggedIn={isLoggedIn}
+            />} />
+            <Route path='/movies' element={<ProtectedRouteElement
+              element={Movies}
+            />} />
+            <Route path='/saved-movies' element={<ProtectedRouteElement
+              element={SavedMovies}
+            />} />
+            <Route path='/profile' element={<ProtectedRouteElement
+              element={Profile}
+            />} />
+            <Route path='/signin' element={<Login />} />
+            <Route path='/signup' element={<Register />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
+      </div >
+    </CurrentUserContext.Provider >
   );
 }
 

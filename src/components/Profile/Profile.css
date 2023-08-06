@@ -62,8 +62,8 @@
 .profile__input {
     background-color: transparent;
     border: none;
-    text-align: right;
-    outline: none;
+     outline: none;
+    
 }
 
 .profile__input-container:has(.profile__input:focus) {

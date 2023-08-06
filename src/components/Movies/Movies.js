@@ -3,12 +3,14 @@ import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesList from "../MoviesList/MoviesList";
 import Preloader from "../Proloader/Preloader";
-function Movies({ loggedIn, locationPath, isLoading }) {
+function Movies({ isLoggedIn, locationPath, isLoading }) {
     return (
         <>
+            <Header isLoggedIn={isLoggedIn}></Header>
             <SearchForm></SearchForm>
-            {isLoading && (<Preloader/>)}
+            {isLoading && (<Preloader />)}
             <MoviesList locationPath={locationPath}></MoviesList>
+            <Footer></Footer>
         </>
     )
 }

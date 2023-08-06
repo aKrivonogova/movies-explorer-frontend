@@ -23,7 +23,6 @@ function MobileMenu() {
                         <div className="mobile-menu__container">
                             <nav className="mobile-menu__navigation">
                                 <ul className='mobile-menu__links'>
-                                    handleOpenMobileMenu
                                     {
                                         links.map((link, index) => (
                                             <li key={index} className="mobile-menu__link-item">

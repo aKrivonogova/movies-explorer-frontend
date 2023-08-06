@@ -30,6 +30,7 @@
 
 .auth__form {
     width: 100%;
+    position: relative;
 }
 
 .auth__fieldset {
@@ -115,7 +116,7 @@
     align-items: center;
     transition: opacity 0.2s linear;
 }
- 
+
 
 .auth__subtitle {
     color: #8B8B8B;
@@ -148,7 +149,7 @@
     color: #C2C2C2;
 }
 
-.auth__submit-button:hover {
+.auth__submit-button:not(:disabled):hover {
     opacity: 0.8;
     cursor: pointer;
 }

@@ -11,20 +11,24 @@ const getToken = () => {
     }
 }
 
-export const register = (password, email, name) => {
-    return fetch(`${BASE_URL}/signup`, {
+export const register = (name, password, email) => {
+    return fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(password, email, name)
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password
+        })
     })
         .then(checkResponse)
 }
 
-export const authorize = ({ password, email }) => {
-    return fetch(`${BASE_URL}/signin`, {
+export const login = (password, email) => {
+    return fetch('http://localhost:3000/signin', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -39,7 +43,7 @@ export const authorize = ({ password, email }) => {
 }
 
 export const getContent = (jwt) => {
-    return fetch(`${BASE_URL}/users/me`, {
+    return fetch('http://localhost:3000/users/me', {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -78,7 +82,7 @@ export const deleteCard = (id) => {
         .then(checkResponse)
 }
 
-export const addNewMovie = (movie) => {
+export const saveNewMovie = (movie) => {
     return fetch(`${BASE_URL}/movies`, {
         method: 'POST',
         headers: getToken(),

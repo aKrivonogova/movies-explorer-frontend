@@ -3,15 +3,15 @@
     "portfolioList": [
         {
             "jobName": "Статичный сайт",
-            "jobLinkPath": "https://github.com/"
+            "jobLinkPath": "https://github.com/aKrivonogova/how-to-learn"
         },
         {
             "jobName": "Адаптивный сайт",
-            "jobLinkPath": "https://github.com/"
+            "jobLinkPath": "https://github.com/aKrivonogova/russian-travel"
         },
         {
             "jobName": "Одностраничное приложение",
-            "jobLinkPath": "https://github.com/"
+            "jobLinkPath": "https://github.com/aKrivonogova/react-mesto-api-full-gha"
         }
     ]
 }

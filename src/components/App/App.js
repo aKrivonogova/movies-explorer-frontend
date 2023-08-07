@@ -136,7 +136,6 @@ function App() {
     localStorage.setItem(`${dataTitle}`, JSON.stringify(storedValue))
   }
 
-
   const getDataFromLocalStorage = (dataTitle) => {
     return JSON.parse(localStorage.getItem(`${dataTitle}`));
   }

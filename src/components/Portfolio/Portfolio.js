@@ -10,8 +10,8 @@ function Portfolio() {
                     <ul className="portfolio__list">
                         {
                             portfolioData.portfolioList.map((portfolioItem, index) => (
-                                <li className="portfolio__item">
-                                    <a href={portfolioItem.jobLinkPath} alt="ссылка на работу" target='_blank'  rel="noreferrer" className='portfolio__link'>
+                                <li key={index} className="portfolio__item">
+                                    <a href={portfolioItem.jobLinkPath} alt="ссылка на работу" target='_blank' rel="noreferrer" className='portfolio__link'>
                                         <p className="portfolio__item-title">{portfolioItem.jobName}</p>
                                         <img src={arrowImage} alt="стрелка" className="portfolio__item-arrow" />
                                     </a>

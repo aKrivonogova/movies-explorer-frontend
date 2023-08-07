@@ -10,7 +10,7 @@ function Techs() {
                     <p className="techs__subtitle">{techsData.techSibtitle}</p>
                     <ul className="techs__list">
                         {techsData.techsList.map((techItem, index) => (
-                            <li className='techs__item'>{techItem}</li>
+                            <li key={index} className='techs__item'>{techItem}</li>
                         ))}
                     </ul>
                 </div>

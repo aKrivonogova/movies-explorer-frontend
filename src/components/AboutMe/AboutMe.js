@@ -1,5 +1,5 @@
 import './AboutMe.css'
-import studentImage from '../../images/photoStudent.svg';
+import studentImage from '../../images/studentImage.jpg';
 
 function AboutMe() {
     let aboutMeData = require('../../resources/aboutMeSectionData.json');

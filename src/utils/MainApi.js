@@ -55,12 +55,12 @@ export const getContent = (jwt) => {
 }
 
 export const updateUserInfo = (name, email) => {
-    return fetch(`${BASE_URL}/users/me`, {
+    return fetch(`http://localhost:3000/users/me`, {
         method: 'PATCH',
         headers: getToken(),
         body: JSON.stringify({
-            name: `${name}`,
-            email: `${email}`
+            name: name,
+            email: email
         })
     })
         .then(checkResponse)

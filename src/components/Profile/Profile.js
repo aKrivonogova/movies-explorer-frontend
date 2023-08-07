@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import { useNavigate } from 'react-router-dom';
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../Context/Context";
 import { useFormWithValidation } from "../../utils/formValidation";
@@ -11,7 +11,7 @@ import './Profile.css'
 function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const { values, handleChange } = useFormWithValidation();
+    const { values, handleChange, errors, isValid, setIsValid, resetForm } = useFormWithValidation();
     const currentUser = useContext(CurrentUserContext);
 
     const [isFormEditDisabled, setIsFormEditDisabled] = useState(true);
@@ -26,14 +26,17 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
         onUpdateUser(values);
     }
 
-    const onUpdateUser = ({name, email}) => {
+    const onUpdateUser = ({ name, email }) => {
+        console.log(name);
+        console.log(email)
         updateUserInfo(name, email).then((res) => {
-          setCurrentUser(res);
-          setErrorMessage('Обновление прошло успешно!');
+            setCurrentUser(res);
+            setErrorMessage('Обновление прошло успешно!');
+            setIsFormEditDisabled(true);
         })
-        .catch((err) => {
-          setErrorMessage(err);
-        })
+            .catch((err) => {
+                setErrorMessage(err);
+            })
     }
 
     const handleLogOut = () => {
@@ -41,6 +44,19 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
         setIsLoggedIn(false);
         navigate('/', { replace: true });
     }
+
+
+    useEffect(() => {
+        if (currentUser)
+            resetForm(currentUser);
+    }, [currentUser, resetForm]);
+
+    useEffect(() => {
+        if (values.name === currentUser.name && values.email === currentUser.email) {
+            resetForm(values, {}, false);
+        }
+    }, [values]);
+
 
     return (
         <>
@@ -52,11 +68,13 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                         <fieldset className="profile__fields">
                             <div className="profile__input-container">
                                 <p className="profile__input-name">Имя</p>
-                                <input type="text" className="profile__input" onChange={handleChange} value={values.name ?? currentUser.name} disabled={isFormEditDisabled} name="name"/>
+                                <input type="text" className="profile__input" onChange={handleChange} value={values.name ?? currentUser.name} disabled={isFormEditDisabled} name="name" required minLength='3' />
+                                <span className="profile__input-error">{errors.name}</span>
                             </div>
                             <div className="profile__input-container">
                                 <p className="profile__input-name">E-mail</p>
-                                <input type="text" className="profile__input" onChange={handleChange} value={values.email ?? currentUser.email} disabled={isFormEditDisabled} name="email"/>
+                                <input type="email" className="profile__input" onChange={handleChange} value={values.email ?? currentUser.email} disabled={isFormEditDisabled} name="email" />
+                                <span className="profile__input-error">{errors.email}</span>
                             </div>
                         </fieldset>
                         <span className={'profile__form-error profile__form-error-hidden profile__form-error'}>При обновлении профиля произошла ошибка.</span>
@@ -64,8 +82,8 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                             <button className="profile__button profile__button_type_edit" onClick={handleEditProfileClick}>
                                 Редактировать
                             </button>
-                        ):(
-                            <button className="profile__button profile__button_type_save" onClick={handleUpdateUser}>
+                        ) : (
+                            <button className="profile__button profile__button_type_save" onClick={handleUpdateUser} disabled={!isValid}>
                                 Сохранить
                             </button>
                         )}

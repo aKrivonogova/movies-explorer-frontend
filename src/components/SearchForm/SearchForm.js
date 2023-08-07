@@ -1,27 +1,30 @@
 import searchLogo from "../../images/searchLogo.svg"
 import './SearchForm.css'
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"; 
 import { useState } from "react";
 function SearchForm({ handleFilterMovies }) {
 
     const [movieSearch, setMovieSearch] = useState('');
-    const [isValidForm, setIsValidForm] = useState(false);
+    const [isShortMoviesOnly, setIsShortMoviesOnly] = useState(false);
     const [searchErrorMessage, setSearchErrorMessage] = useState('');
 
-    const checkFormValid = (event) => {
-        event.target.value.length >= 1 ? setIsValidForm(true) : setIsValidForm(false);
+    const isFormValid = () => {
+        return movieSearch.length >= 1;
+    }
+
+    const handleShortMoviesCheckboxClick = () => {
+        setIsShortMoviesOnly(!isShortMoviesOnly);
     }
 
     const handleSearchInput = (event) => {
         setMovieSearch(event.target.value);
-        checkFormValid(event);
         setSearchErrorMessage('');
     }
 
     const handleSearchSubmit = (event) => {
         event.preventDefault();
-        if (isValidForm) {
-            handleFilterMovies(movieSearch)
+        if (isFormValid()) {
+            handleFilterMovies({movieSearch: movieSearch, isShortMoviesOnly: isShortMoviesOnly});
         }
         else {
             setSearchErrorMessage('Необходимо ввести ключевое слово');
@@ -30,18 +33,18 @@ function SearchForm({ handleFilterMovies }) {
 
     return (
         <>
-            <section class="search">
+            <section className="search">
                 <div className="search__container">
-                    <form class="search__form" onSubmit={handleSearchSubmit}>
+                    <form className="search__form" onSubmit={handleSearchSubmit}>
                         <div className="search__content">
-                            <img src={searchLogo} alt="лого лупа" class="search__logo" />
+                            <img src={searchLogo} alt="лого лупа" className="search__logo" />
                             <fieldset className="search__feilds">
-                                <input type="text" class="search__input" placeholder="Фильм" onChange={handleSearchInput} value={movieSearch} />
+                                <input type="text" className="search__input" placeholder="Фильм" onChange={handleSearchInput} value={movieSearch} />
                                 <span className="search__input-error">{searchErrorMessage}</span>
                             </fieldset>
-                            <button class="search__button"></button>
+                            <button className="search__button"></button>
                         </div>
-                        <FilterCheckbox></FilterCheckbox>
+                        <FilterCheckbox handleShortMoviesCheckboxClick={handleShortMoviesCheckboxClick} checkboxValue={isShortMoviesOnly}/>
                     </form>
                 </div>
             </section>

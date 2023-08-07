@@ -1,14 +1,42 @@
 import LogoLink from '../LogoLink/LogoLink';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../utils/formValidation';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../utils/MainApi';
 import './Login.css'
-function Login({ handleLogin,errorMessage}) {
+function Login({ setIsLoggedIn }) {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
     const { values, handleChange, errors, isValid } = useFormWithValidation();
-    console.log("values", values);
+
     function handleLoginFormSubmit(event) {
         event.preventDefault();
         handleLogin(values);
     }
+
+    const handleLogin = ({ password, email }) => {
+        login(password, email)
+          .then((res) => {
+            if (res.token) {
+              localStorage.setItem('jwt', res.token);
+              setIsLoggedIn(true);
+              navigate('/movies', { replace: true });
+            }
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              setErrorMessage('Введены неверные данные пользователя.');
+            }
+            if (error.status === 401) {
+              setErrorMessage('Пользователь с таким email не существует');
+            }
+            else {
+              setErrorMessage('Что-то пошло не так...')
+            }
+          })
+    }
+
     return (
         <>
             <section className="login auth">

@@ -1,13 +1,65 @@
 import LogoLink from '../LogoLink/LogoLink';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../utils/formValidation';
+import { register, login } from '../../utils/MainApi';
+import { useNavigate } from 'react-router-dom';
+
 import './Register.css'
-function Register({ handleRegister, errorMessage }) {
+function Register({setIsLoggedIn}) {
+
     const { values, handleChange, errors, isValid } = useFormWithValidation();
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+
     const handleRegisterFormSubmit = (event) => {
         event.preventDefault();
         handleRegister(values)
     }
+
+    const handleRegister = ({ name, password, email }) => {
+    register(name, password, email)
+        .then((res) => {
+            if (res.status !== 400) {
+                handleLogin({ password, email });
+                setErrorMessage(`Регистрация прошла успешно!`);
+            }
+            })
+            .catch((error) => {
+            if (error.status === 400) {
+                setErrorMessage('Введены неверные данные пользователя.');
+            }
+            if (error.status === 409) {
+                setErrorMessage('Пользователь с таким email уже существует');
+            }
+            else {
+                setErrorMessage('Что-то пошло не так...')
+            }
+        })
+    }
+
+    const handleLogin = ({ password, email }) => {
+        login(password, email)
+          .then((res) => {
+            if (res.token) {
+              localStorage.setItem('jwt', res.token);
+              setIsLoggedIn(true);
+              navigate('/movies', { replace: true });
+            }
+          })
+          .catch((error) => {
+            if (error.status === 400) {
+              setErrorMessage('Введены неверные данные пользователя.');
+            }
+            if (error.status === 401) {
+              setErrorMessage('Пользователь с таким email не существует');
+            }
+            else {
+              setErrorMessage('Что-то пошло не так...')
+            }
+          })
+    }
+
     return (
         <>
             <section className="register auth">

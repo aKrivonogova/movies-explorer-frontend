@@ -20,7 +20,7 @@
 }
 
 .promo__link:hover {
-    color: #CBCBCB;
+    opacity: 0.7;
 }
 
 @media (max-width: 425px) {

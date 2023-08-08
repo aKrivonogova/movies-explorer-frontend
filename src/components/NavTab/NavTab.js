@@ -2,9 +2,9 @@ import './NavTab.css'
 function NavTab(props) {
     return (
         <>
-            <li className="promo__link-item">
-                <a className="promo__link" href={props.linkPath}>
-                    {props.linkName}</a></li>
+            <a className="promo__link" href={props.linkPath}>
+                <li className="promo__link-item"> {props.linkName}</li >
+            </a>
         </>
     )
 }

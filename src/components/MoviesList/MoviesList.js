@@ -75,7 +75,7 @@ function MoviesList({ movies, savedMovies, onSave, onDelete, searchResultsLength
     const CardList = () => {
         if (moviesToDisplay.length > 0) {
             return (moviesToDisplay.map((movieItem) => (
-                <MoviesCard key={movieItem.toString()} cardMovie={movieItem} savedMovies={savedMovies} onSave={onSave} onDelete={onDelete} />
+                <MoviesCard key={movieItem.id} cardMovie={movieItem} savedMovies={savedMovies} onSave={onSave} onDelete={onDelete} />
             )));
         } else {
             return (

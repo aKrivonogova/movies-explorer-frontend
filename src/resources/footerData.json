@@ -3,10 +3,12 @@
     "footerYear": "2023",
     "footerLinks": [
         {
+            "id": 4,
             "footerLinkTitle": "Яндекс.Практикум",
             "footerLinkPath": "https://practicum.yandex.ru/"
         },
         {
+            "id": 5,
             "footerLinkTitle": "GitHub",
             "footerLinkPath": "https://github.com/"
         }

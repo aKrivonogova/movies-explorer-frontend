@@ -12,7 +12,7 @@ function Navigation(props) {
                 <nav className={hederNavigationClass}>
                     {
                         navigationLinks.map((pathItem) => (
-                            <Link key={pathItem.toString()} to={pathItem.path} className='header__link'>{pathItem.pathName}</Link>
+                            <Link key={pathItem.id} to={pathItem.path} className='header__link'>{pathItem.pathName}</Link>
                         ))
                     }
                 </nav>

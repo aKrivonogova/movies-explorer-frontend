@@ -13,7 +13,7 @@ function Footer() {
                         <ul className="footer__links">
                             {
                                 footerData.footerLinks.map((link) => (
-                                    <li key={link.toString()} className='footer__link-item'>
+                                    <li key={link.id} className='footer__link-item'>
                                         <a  rel="noreferrer" target="_blank" className='footer__link' href={link.footerLinkPath}>{link.footerLinkTitle}</a>
                                     </li>
                                 ))

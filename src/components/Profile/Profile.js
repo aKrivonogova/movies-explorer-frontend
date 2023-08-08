@@ -32,9 +32,9 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
             setErrorMessage('Обновление прошло успешно!');
             setIsFormEditDisabled(true);
         })
-        .catch((err) => {
-            setErrorMessage(err);
-        })
+            .catch((err) => {
+                setErrorMessage(err);
+            })
     }
 
     const handleLogOut = () => {
@@ -47,6 +47,7 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     useEffect(() => {
         if (currentUser)
             resetForm(currentUser);
+            setErrorMessage('');
     }, [currentUser, resetForm]);
 
     useEffect(() => {
@@ -75,17 +76,20 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                                 <span className="profile__input-error">{errors.email}</span>
                             </div>
                         </fieldset>
-                        <span className={'profile__form-error profile__form-error-hidden profile__form-error'}>
-                            {errorMessage}
-                        </span>
+
                         {isFormEditDisabled ? (
                             <button className="profile__button profile__button_type_edit" onClick={handleEditProfileClick}>
                                 Редактировать
                             </button>
                         ) : (
-                            <button className="profile__button profile__button_type_save" onClick={handleUpdateUser} disabled={!isValid}>
-                                Сохранить
-                            </button>
+                            <>
+                                <span className={'profile__form-error '}>
+                                    {errorMessage}
+                                </span>
+                                <button className="profile__button profile__button_type_save" onClick={handleUpdateUser} disabled={!isValid}>
+                                    Сохранить
+                                </button>
+                            </>
                         )}
                     </form>
                     <Link to="/" onClick={handleLogOut} className={isFormEditDisabled ? 'profile__signout-link' : 'profile__signout-link profile__signout-link-hidden'}>Выйти из аккаунта</Link>

@@ -46,7 +46,7 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
             movieId: cardMovie.id,
         }
 
-        saveNewMovie(payload).then((newMovie) => {
+         saveNewMovie(payload).then((newMovie) => {
             onSave(newMovie);
         })
             .catch((err) => {

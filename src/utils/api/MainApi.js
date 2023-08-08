@@ -1,4 +1,5 @@
-const BASE_URL = `https://localhost:3000`
+const { BASE_URL_MAIN } = process.env;
+
 
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Произошла ошибка: ${response.statusText} , попробуйте еще раз`);
 
@@ -12,7 +13,7 @@ const getToken = () => {
 }
 
 export const register = (name, password, email) => {
-    return fetch('http://localhost:3000/signup', {
+    return fetch(BASE_URL_MAIN + 'signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -28,7 +29,7 @@ export const register = (name, password, email) => {
 }
 
 export const login = (password, email) => {
-    return fetch('http://localhost:3000/signin', {
+    return fetch(BASE_URL_MAIN + 'signin', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -43,7 +44,7 @@ export const login = (password, email) => {
 }
 
 export const getContent = (jwt) => {
-    return fetch('http://localhost:3000/users/me', {
+    return fetch(BASE_URL_MAIN + 'users/me', {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -55,7 +56,7 @@ export const getContent = (jwt) => {
 }
 
 export const updateUserInfo = (name, email) => {
-    return fetch(`http://localhost:3000/users/me`, {
+    return fetch(BASE_URL_MAIN + `users/me`, {
         method: 'PATCH',
         headers: getToken(),
         body: JSON.stringify({
@@ -67,7 +68,7 @@ export const updateUserInfo = (name, email) => {
 }
 
 export const getSavedMovies = () => {
-    return fetch(`http://localhost:3000/movies`, {
+    return fetch(BASE_URL_MAIN + `movies`, {
         method: 'GET',
         headers: getToken()
     })
@@ -75,7 +76,7 @@ export const getSavedMovies = () => {
 }
 
 export const deleteCard = (id) => {
-    return fetch(`http://localhost:3000/movies/${id}`, {
+    return fetch(BASE_URL_MAIN + `movies/${id}`, {
         method: 'DELETE',
         headers: getToken()
     })
@@ -83,7 +84,7 @@ export const deleteCard = (id) => {
 }
 
 export const saveNewMovie = (movie) => {
-    return fetch(`http://localhost:3000/movies`, {
+    return fetch(BASE_URL_MAIN + `movies`, {
         method: 'POST',
         headers: getToken(),
         body: JSON.stringify(movie)

@@ -1,9 +1,9 @@
 import LogoLink from '../LogoLink/LogoLink';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useFormWithValidation } from '../../utils/formValidation';
+import { useFormWithValidation } from '../../utils/hooks/useFormValidation';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../utils/MainApi';
+import { login } from '../../utils/api/MainApi';
 import './Login.css'
 function Login({ setIsLoggedIn }) {
     const navigate = useNavigate();

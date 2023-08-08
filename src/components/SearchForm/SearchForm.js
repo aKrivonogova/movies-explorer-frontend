@@ -1,8 +1,8 @@
 import searchLogo from "../../images/searchLogo.svg"
 import './SearchForm.css'
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"; 
-import { useState } from "react";
-function SearchForm({ handleFilterMovies }) {
+import { useEffect, useState } from "react";
+function SearchForm({ initialSearch, onSearch, onDisplayShortMovies }) {
 
     const [movieSearch, setMovieSearch] = useState('');
     const [isShortMoviesOnly, setIsShortMoviesOnly] = useState(false);
@@ -14,6 +14,7 @@ function SearchForm({ handleFilterMovies }) {
 
     const handleShortMoviesCheckboxClick = () => {
         setIsShortMoviesOnly(!isShortMoviesOnly);
+        onDisplayShortMovies(!isShortMoviesOnly);
     }
 
     const handleSearchInput = (event) => {
@@ -24,12 +25,18 @@ function SearchForm({ handleFilterMovies }) {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (isFormValid()) {
-            handleFilterMovies({movieSearch: movieSearch, isShortMoviesOnly: isShortMoviesOnly});
+            onSearch({movieSearch: movieSearch});
         }
         else {
             setSearchErrorMessage('Необходимо ввести ключевое слово');
         }
     }
+
+    useEffect(() => {
+        if(initialSearch !== ''){
+            setMovieSearch(initialSearch);
+        }
+    }, [initialSearch]);
 
     return (
         <>

@@ -1,8 +1,8 @@
 import LogoLink from '../LogoLink/LogoLink';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useFormWithValidation } from '../../utils/formValidation';
-import { register, login } from '../../utils/MainApi';
+import { useFormWithValidation } from '../../utils/hooks/useFormValidation';
+import { register, login } from '../../utils/api/MainApi';
 import { useNavigate } from 'react-router-dom';
 
 import './Register.css'

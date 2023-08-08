@@ -67,7 +67,7 @@ export const updateUserInfo = (name, email) => {
 }
 
 export const getSavedMovies = () => {
-    return fetch(`${BASE_URL}/movies`, {
+    return fetch(`http://localhost:3000/movies`, {
         method: 'GET',
         headers: getToken()
     })
@@ -75,7 +75,7 @@ export const getSavedMovies = () => {
 }
 
 export const deleteCard = (id) => {
-    return fetch(`${BASE_URL}/movies/${id}`, {
+    return fetch(`http://localhost:3000/movies/${id}`, {
         method: 'DELETE',
         headers: getToken()
     })
@@ -83,7 +83,7 @@ export const deleteCard = (id) => {
 }
 
 export const saveNewMovie = (movie) => {
-    return fetch(`${BASE_URL}/movies`, {
+    return fetch(`http://localhost:3000/movies`, {
         method: 'POST',
         headers: getToken(),
         body: JSON.stringify(movie)

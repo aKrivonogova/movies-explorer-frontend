@@ -9,7 +9,7 @@ import NotFound from '../NotFound/NotFound';
 import Register from '../Register/Register';
 import CurrentUserContext from '../Context/Context';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
-import * as MainApi from '../../utils/MainApi';
+import * as MainApi from '../../utils/api/MainApi';
 
 function App() {
 
@@ -24,16 +24,19 @@ function App() {
       MainApi.getContent(jwt)
         .then((res) => {
           setCurrentUser(res);
-          setIsLoggedIn(true);
-          if(location.pathname === '/signin') {
-            navigate('/movies', { replace: true });
-          }
         })
         .catch((error) => {
           console.log(error)
         })
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    setIsLoggedIn(true);
+    if(location.pathname === '/signin') {
+      navigate('/movies', { replace: true });
+    }
+  }, [currentUser]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -53,8 +56,8 @@ function App() {
             />} />
             <Route path='/profile' element={<ProtectedRouteElement
               element={Profile}
-              setIsLoggedIn={setIsLoggedIn}
               isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
               setCurrentUser={setCurrentUser}
             />} />
             <Route path='/signin' element={<Login
@@ -63,7 +66,7 @@ function App() {
             <Route path='/signup' element={<Register
               setIsLoggedIn={setIsLoggedIn}
             />} />
-            <Route path='*' element={<NotFound />} />
+            <Route path='*' element={<NotFound/>} />
           </Routes>
         </main>
       </div >

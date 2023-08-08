@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../Context/Context";
-import { useFormWithValidation } from "../../utils/formValidation";
+import { useFormWithValidation } from "../../utils/hooks/useFormValidation";
 import React from "react";
-import { updateUserInfo } from "../../utils/MainApi";
+import { updateUserInfo } from "../../utils/api/MainApi";
 import './Profile.css'
 
 function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
@@ -27,20 +27,18 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     }
 
     const onUpdateUser = ({ name, email }) => {
-        console.log(name);
-        console.log(email)
         updateUserInfo(name, email).then((res) => {
             setCurrentUser(res);
             setErrorMessage('Обновление прошло успешно!');
             setIsFormEditDisabled(true);
         })
-            .catch((err) => {
-                setErrorMessage(err);
-            })
+        .catch((err) => {
+            setErrorMessage(err);
+        })
     }
 
     const handleLogOut = () => {
-        localStorage.removeItem('jwt');
+        localStorage.clear();
         setIsLoggedIn(false);
         navigate('/', { replace: true });
     }
@@ -77,7 +75,9 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                                 <span className="profile__input-error">{errors.email}</span>
                             </div>
                         </fieldset>
-                        <span className={'profile__form-error profile__form-error-hidden profile__form-error'}>При обновлении профиля произошла ошибка.</span>
+                        <span className={'profile__form-error profile__form-error-hidden profile__form-error'}>
+                            {errorMessage}
+                        </span>
                         {isFormEditDisabled ? (
                             <button className="profile__button profile__button_type_edit" onClick={handleEditProfileClick}>
                                 Редактировать

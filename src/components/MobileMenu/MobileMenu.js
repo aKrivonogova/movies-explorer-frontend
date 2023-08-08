@@ -1,6 +1,6 @@
 import './MobileMenu.css'
 import { NavLink } from 'react-router-dom';
-import { links, profileLink } from '../../utils/mobileLinks'
+import { links, profileLink } from '../../utils/constants/mobileLinks'
 import MobileMenuButton from '../MobileMenuButton/MobileMenuButton'
 import { useState } from 'react';
 

@@ -1,7 +1,7 @@
 import './Navigation.css';
 import React from "react";
 import { Link } from 'react-router-dom';
-import * as routes from '../../utils/links';
+import * as routes from '../../utils/constants/links';
 
 function Navigation(props) {
     const hederNavigationClass = `header__navigation ${props.isLoggedIn ? ('authorized') : ('no-authorized')}`;

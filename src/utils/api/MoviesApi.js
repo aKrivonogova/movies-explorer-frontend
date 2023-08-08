@@ -9,6 +9,5 @@ export const getMovies = () => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
-    })
-        .then(checkResponse)
+    }).then(checkResponse)
 }

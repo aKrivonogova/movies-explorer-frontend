@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
@@ -24,6 +25,7 @@ function App() {
       MainApi.getContent(jwt)
         .then((res) => {
           setCurrentUser(res);
+          setIsLoggedIn(true);
         })
         .catch((error) => {
           console.log(error)
@@ -32,7 +34,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setIsLoggedIn(true);
     if(location.pathname === '/signin') {
       navigate('/movies', { replace: true });
     }
@@ -51,7 +52,7 @@ function App() {
               isLoggedIn={isLoggedIn}
             />} />
             <Route path='/saved-movies' element={<ProtectedRouteElement
-              element={Movies}
+              element={SavedMovies}
               isLoggedIn={isLoggedIn}
             />} />
             <Route path='/profile' element={<ProtectedRouteElement

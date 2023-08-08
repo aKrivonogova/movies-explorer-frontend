@@ -1,5 +1,5 @@
-const { BASE_URL_MAIN } = process.env;
-
+const { REACT_APP_BASE_URL_MAIN } = process.env;
+console.log('REACT_APP_BASE_URL_MAIN', REACT_APP_BASE_URL_MAIN);
 
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`Произошла ошибка: ${response.statusText} , попробуйте еще раз`);
 
@@ -13,7 +13,7 @@ const getToken = () => {
 }
 
 export const register = (name, password, email) => {
-    return fetch(BASE_URL_MAIN + 'signup', {
+    return fetch(REACT_APP_BASE_URL_MAIN + 'signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -29,7 +29,7 @@ export const register = (name, password, email) => {
 }
 
 export const login = (password, email) => {
-    return fetch(BASE_URL_MAIN + 'signin', {
+    return fetch(REACT_APP_BASE_URL_MAIN + 'signin', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -44,7 +44,7 @@ export const login = (password, email) => {
 }
 
 export const getContent = (jwt) => {
-    return fetch(BASE_URL_MAIN + 'users/me', {
+    return fetch(REACT_APP_BASE_URL_MAIN + 'users/me', {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -56,7 +56,7 @@ export const getContent = (jwt) => {
 }
 
 export const updateUserInfo = (name, email) => {
-    return fetch(BASE_URL_MAIN + `users/me`, {
+    return fetch(REACT_APP_BASE_URL_MAIN + `users/me`, {
         method: 'PATCH',
         headers: getToken(),
         body: JSON.stringify({
@@ -68,7 +68,7 @@ export const updateUserInfo = (name, email) => {
 }
 
 export const getSavedMovies = () => {
-    return fetch(BASE_URL_MAIN + `movies`, {
+    return fetch(REACT_APP_BASE_URL_MAIN + `movies`, {
         method: 'GET',
         headers: getToken()
     })
@@ -76,7 +76,7 @@ export const getSavedMovies = () => {
 }
 
 export const deleteCard = (id) => {
-    return fetch(BASE_URL_MAIN + `movies/${id}`, {
+    return fetch(REACT_APP_BASE_URL_MAIN + `movies/${id}`, {
         method: 'DELETE',
         headers: getToken()
     })
@@ -84,7 +84,7 @@ export const deleteCard = (id) => {
 }
 
 export const saveNewMovie = (movie) => {
-    return fetch(BASE_URL_MAIN + `movies`, {
+    return fetch(REACT_APP_BASE_URL_MAIN + `movies`, {
         method: 'POST',
         headers: getToken(),
         body: JSON.stringify(movie)

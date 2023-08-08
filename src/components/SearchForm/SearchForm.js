@@ -2,19 +2,17 @@ import searchLogo from "../../images/searchLogo.svg"
 import './SearchForm.css'
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"; 
 import { useEffect, useState } from "react";
-function SearchForm({ initialSearch, onSearch, onDisplayShortMovies }) {
+function SearchForm({ initialSearch, onSearch, onDisplayShortMovies, durationFlag }) {
 
     const [movieSearch, setMovieSearch] = useState('');
-    const [isShortMoviesOnly, setIsShortMoviesOnly] = useState(false);
     const [searchErrorMessage, setSearchErrorMessage] = useState('');
 
     const isFormValid = () => {
         return movieSearch.length >= 1;
     }
 
-    const handleShortMoviesCheckboxClick = () => {
-        setIsShortMoviesOnly(!isShortMoviesOnly);
-        onDisplayShortMovies(!isShortMoviesOnly);
+    const handleShortMoviesCheckboxClick = () => {;
+        onDisplayShortMovies(!durationFlag);
     }
 
     const handleSearchInput = (event) => {
@@ -51,7 +49,7 @@ function SearchForm({ initialSearch, onSearch, onDisplayShortMovies }) {
                             </fieldset>
                             <button className="search__button"></button>
                         </div>
-                        <FilterCheckbox handleShortMoviesCheckboxClick={handleShortMoviesCheckboxClick} checkboxValue={isShortMoviesOnly}/>
+                        <FilterCheckbox handleShortMoviesCheckboxClick={handleShortMoviesCheckboxClick} checkboxValue={durationFlag}/>
                     </form>
                 </div>
             </section>

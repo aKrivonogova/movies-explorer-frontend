@@ -6,7 +6,7 @@ import Preloader from "../Preloader/Preloader";
 import { useLocation } from 'react-router-dom';
 import { useMoviesFiltration } from "../../utils/hooks/useMoviesFiltration"
 import { useEffect, useState } from 'react';
-//import { getSavedMovies } from '../../utils/api/MainApi';
+import { getSavedMovies } from '../../utils/api/MainApi';
 import * as MoviesApi from '../../utils/api/MoviesApi';
 
 function Movies({ isLoggedIn }) {
@@ -26,9 +26,9 @@ function Movies({ isLoggedIn }) {
         return JSON.parse(localStorage.getItem(`${dataTitle}`));
     }
 
-    // const loadSavedMovies = async () => {
-    //     return await getSavedMovies();
-    // }
+    const loadSavedMovies = async () => {
+        return await getSavedMovies();
+    }
 
     const getMovies = async () => {
         return await MoviesApi.getMovies();
@@ -50,30 +50,37 @@ function Movies({ isLoggedIn }) {
             movies = getDataFromLocalStorage('collection');
         }
 
-        // let savedMovies;
-        // if(!localStorage.collection) {
-        //     savedMovies = await loadSavedMovies();
-        // } else {
-        //     savedMovies = getDataFromLocalStorage('savedCollection');
-        // }
-
-        // console.log('savedMovies', savedMovies);
-
         const searchResult = findMoviesByName(movies, movieSearch);
 
         saveDataToLocalStorage('searchString', movieSearch);
         saveDataToLocalStorage('searchResults', searchResult);
         setFoundMovies(searchResult);
-        //setSavedMovies(savedMovies);
         setIsLoading(false);
     }
 
-    const onSaveMovie = () => {
-
+    const onSaveMovie = (movie) => { 
+        const newSavedMovies = savedMovies;
+        newSavedMovies.unshift(movie);
+        saveDataToLocalStorage('savedCollection', newSavedMovies);
+        setSavedMovies([...newSavedMovies]);
     }
 
-    const onDeleteMovie = () => {
+    const onDeleteMovie = (id) => {
+        const index = savedMovies.map(c => c.movieId).indexOf(id);
+        let newSavedMovies = savedMovies;
+        newSavedMovies.splice(index, 1);
+        saveDataToLocalStorage('savedCollection', newSavedMovies);
+        setSavedMovies([...newSavedMovies]);
+    }
 
+    const preloadSavedMovies = async () => {
+        let movies;
+        if(!localStorage.savedCollection) {
+            movies = await loadSavedMovies();
+        } else {
+            movies = getDataFromLocalStorage('savedCollection');
+        }
+        setSavedMovies(movies);
     }
 
     useEffect(() => {
@@ -83,7 +90,13 @@ function Movies({ isLoggedIn }) {
 
         const searchString = getDataFromLocalStorage('searchString');
         const searchResult = getDataFromLocalStorage('searchResults');
+        const durationFlag = getDataFromLocalStorage('durationFlag');
 
+        if(durationFlag) {
+            setIsDurationFilterActive(durationFlag);
+        }
+
+        preloadSavedMovies();
         setFoundMovies(searchResult);
         setInitialSearch(searchString);
     }, []);
@@ -92,13 +105,16 @@ function Movies({ isLoggedIn }) {
         let movies;
 
         if(isDurationFilterActive) {
-            movies = filterMoviesByDuration(foundMovies)
+            movies = filterMoviesByDuration(foundMovies);
         } else {
             movies = foundMovies;
         }
-
         setMoviesToDisplay(movies);
     }, [isDurationFilterActive, foundMovies]);
+
+    useEffect(() => {
+        saveDataToLocalStorage('durationFlag', isDurationFilterActive);
+    }, [isDurationFilterActive]);
 
     return (
         <>
@@ -106,6 +122,7 @@ function Movies({ isLoggedIn }) {
             <SearchForm
                 initialSearch={initialSearch}
                 onSearch={onSearch} 
+                durationFlag={isDurationFilterActive}
                 onDisplayShortMovies={setIsDurationFilterActive}
             />
             {isLoading && (<Preloader/>)}

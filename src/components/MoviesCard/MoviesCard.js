@@ -2,14 +2,16 @@
 import './MoviesCard.css'
 import { useLocation } from 'react-router-dom';
 import { saveNewMovie, deleteCard } from '../../utils/api/MainApi';
+import { useEffect, useState } from 'react';
 function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
 
+    const [isInFavorites, setIsInFavorites] = useState(false);
+
     const calculateIsInFavorites = () => {
-        return !!(savedMovies ? savedMovies.find((movie) => movie.movieId === cardMovie.id) : ``);
+        return !!(savedMovies.length > 0 ? savedMovies.find((movie) => movie?.movieId === cardMovie.id) : ``);
     }
 
     const location = useLocation();
-    const isInFavorites = calculateIsInFavorites();
     const isMoviesPage = location.pathname === '/movies';
 
     const SaveMovieButton = () => {
@@ -27,9 +29,9 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
     }
 
     const bringToFormatUrl = (imageLocalPath) => {
+
         return `https://api.nomoreparties.co${imageLocalPath}`
     }
-
 
     const addCardToFavorites = () => {
         const payload = {
@@ -55,10 +57,10 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
     }
 
     const removeCardFromFavorites = () => {
-        const id = isMoviesPage ? savedMovies.find((movie) => movie.movieId === cardMovie.id).id : cardMovie.id;
+        const id = isMoviesPage ? cardMovie.id : cardMovie.movieId;
 
         deleteCard(id).then((deletedMovie) => {
-            onDelete(deletedMovie);
+            onDelete(id);
         })
             .catch((err) => {
                 console.error(err);
@@ -70,6 +72,10 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
         const minutes = mins % 60;
         return hours + 'ч ' + minutes + 'м';
     }
+
+    useEffect(() => {
+        setIsInFavorites(calculateIsInFavorites());
+    }, [savedMovies])
 
     return (
         <>
@@ -84,7 +90,7 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
                     }
                 </div>
                 <a href={cardMovie.trailerLink}>
-                    <img src={bringToFormatUrl(cardMovie.image.url)} alt="постер фильма" className="movies__card-image" />
+                    <img src={isMoviesPage ? bringToFormatUrl(cardMovie.image.url) : cardMovie.image} alt="постер фильма" className="movies__card-image" />
                 </a>
             </li>
         </>

@@ -1,5 +1,4 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
-import * as MainApi from '../../utils/api/MainApi'
 import { SCREEN_SIZE_REGULAR, SCREEN_SIZE_MIDDLE } from "../../utils/constants/breakpoints";
 import { useLocation } from 'react-router-dom';
 import "./MoviesList.css"
@@ -10,7 +9,6 @@ function MoviesList({ movies, savedMovies, onSave, onDelete, searchResultsLength
     const location = useLocation();
     const isLoadMoreAvailable = moviesToDisplay.length < searchResultsLength;
     const moviesLeft = searchResultsLength - moviesToDisplay.length;
-
     const isSavedMoviesPage = location.pathname === '/saved-movies';
 
     const getNumberOfMoviesToDisplay = () => {
@@ -44,6 +42,18 @@ function MoviesList({ movies, savedMovies, onSave, onDelete, searchResultsLength
         prepareData(numberOfMoviesToDisplay);
     }
 
+    const areSavedMoviesAvailable = () => {
+        return localStorage.savedCollection?.length > 0;
+    }
+
+    const areSearchResultsAvailable = () => {
+        return localStorage.searchResults?.length > 0;  
+    }
+
+    const isDataAvailable = () => {
+        return isSavedMoviesPage ? areSavedMoviesAvailable() : areSearchResultsAvailable();
+    }
+
     const NotFoundMessage = () => {
         return (
             <h2 className="movies__message">
@@ -52,15 +62,15 @@ function MoviesList({ movies, savedMovies, onSave, onDelete, searchResultsLength
         );
     }
 
-    // const NoMoviesMessage = () => {
-    //     return isSavedMoviesPage ? (
-    //         <h2 className="movies__message">
-    //             У Вас нет сохраненных фильмов
-    //         </h2>) : (<h2 className="movies__message">
-    //             Введите запрос для поиска фильмов
-    //         </h2>
-    //     );
-    // }
+    const NoMoviesMessage = () => {
+        return isSavedMoviesPage ? (
+            <h2 className="movies__message">
+                У Вас нет сохраненных фильмов
+            </h2>) : (<h2 className="movies__message">
+                Введите запрос для поиска фильмов
+            </h2>
+        );
+    }
 
     const CardList = () => {
         if (moviesToDisplay.length > 0) {
@@ -75,11 +85,12 @@ function MoviesList({ movies, savedMovies, onSave, onDelete, searchResultsLength
     }
 
     const LoadMoreButton = () => {
-        return (<div className="movies__show-more">
-            <button className={'show-more__button_visible'} onClick={handleLoadMore}>
-                Еще
-            </button>
-        </div>
+        return (
+            <div className="movies__show-more">
+                <button className={'show-more__button_visible'} onClick={handleLoadMore}>
+                    Еще
+                </button>
+            </div>
         );
     }
 
@@ -92,7 +103,7 @@ function MoviesList({ movies, savedMovies, onSave, onDelete, searchResultsLength
         <>
             <div className="movies">
                 <ul className="movies__card-list">
-                    <CardList />
+                    {isDataAvailable() ? (<CardList />) : (<NoMoviesMessage/>)}
                 </ul>
                 {isLoadMoreAvailable && (<LoadMoreButton />)}
             </div>

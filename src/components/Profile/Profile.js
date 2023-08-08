@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../Context/Context";
-import { useFormWithValidation } from "../../utils/hooks/useFormValidation";
+import { useFormWithValidation } from "../../hooks/useFormValidation";
 import { emailPattern } from '../../utils/constants/emailPattern';
 
 import React from "react";

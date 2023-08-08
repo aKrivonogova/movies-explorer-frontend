@@ -1,7 +1,7 @@
 import LogoLink from '../LogoLink/LogoLink';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useFormWithValidation } from '../../utils/hooks/useFormValidation';
+import { useFormWithValidation } from '../../hooks/useFormValidation';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../utils/api/MainApi';
 import { emailPattern } from '../../utils/constants/emailPattern';

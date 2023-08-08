@@ -12,7 +12,7 @@ import React from "react";
 import { updateUserInfo } from "../../utils/api/MainApi";
 import './Profile.css'
 
-function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
+function Profile({ isLoggedIn, setIsLoggedIn }) {
     const navigate = useNavigate();
     const [isOpenPopupMessage, setIsOpenPopupMessage] = useState(false);
     const [infoPopupMessage, setInfoPopupMessage] = useState({
@@ -21,8 +21,8 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     })
     const [imagePopup, setImagePopup] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
-    const { values, handleChange, errors, isValid, setIsValid, resetForm } = useFormWithValidation();
-    const currentUser = useContext(CurrentUserContext);
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+    const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
     const [isFormEditDisabled, setIsFormEditDisabled] = useState(true);
 
@@ -67,9 +67,9 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     const handleLogOut = () => {
         localStorage.clear();
         setIsLoggedIn(false);
+        setCurrentUser({});
         navigate('/', { replace: true });
     }
-
 
     useEffect(() => {
         if (currentUser)

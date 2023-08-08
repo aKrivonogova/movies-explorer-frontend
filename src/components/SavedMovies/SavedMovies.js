@@ -96,6 +96,7 @@ function SavedMovies({ isLoggedIn }) {
             <SearchForm
                 initialSearch={initialSearch}
                 onSearch={onSearch} 
+                durationFlag={isDurationFilterActive}
                 onDisplayShortMovies={setIsDurationFilterActive}
             />
             {isLoading && (<Preloader/>)}

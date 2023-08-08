@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -11,36 +11,42 @@ import Register from '../Register/Register';
 import CurrentUserContext from '../Context/Context';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 import * as MainApi from '../../utils/api/MainApi';
-
 function App() {
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState([]);
-
-  useEffect(() => {
+  const getUser = () => {
     const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      MainApi.getContent(jwt)
+    if (!jwt) {
+      setIsLoggedIn(false);
+      return;
+    }
+    MainApi.getContent(jwt)
         .then((res) => {
           setCurrentUser(res);
           setIsLoggedIn(true);
         })
         .catch((error) => {
-          console.log(error)
+          setIsLoggedIn(false);
+          console.log(error);
         })
-    }
+  }
+
+  useEffect(() => {
+    getUser();
   }, []);
 
   useEffect(() => {
-    if(location.pathname === '/signin') {
-      navigate('/movies', { replace: true });
+    if(isLoggedIn){
+      getUser();
     }
-  }, [currentUser]);
+  }, [isLoggedIn]);
+
+  console.log('isLoggedIn', isLoggedIn);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className="App">
         <main className='main'>
           <Routes>
@@ -59,14 +65,17 @@ function App() {
               element={Profile}
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
-              setCurrentUser={setCurrentUser}
             />} />
-            <Route path='/signin' element={<Login
-              setIsLoggedIn={setIsLoggedIn} 
-              />} />
-            <Route path='/signup' element={<Register
-              setIsLoggedIn={setIsLoggedIn}
-            />} />
+            <Route path='/signin' element={
+              isLoggedIn ? <Navigate to="/movies" replace /> : <Login
+                setIsLoggedIn={setIsLoggedIn} 
+              />} 
+            />
+            <Route path='/signup' element={
+              isLoggedIn ? <Navigate to="/movies" replace /> : <Register
+                setIsLoggedIn={setIsLoggedIn}
+              />}
+            />
             <Route path='*' element={<NotFound/>} />
           </Routes>
         </main>

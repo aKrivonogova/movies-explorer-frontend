@@ -11,8 +11,8 @@ function AboutProject(props) {
                     </h2>
                     <div className="aboutProject__info">
                         {
-                            aboutProjectData.aboutProject.map((projectInfo, index) => (
-                                <div key={index} className="aboutProject__info-block">
+                            aboutProjectData.aboutProject.map((projectInfo) => (
+                                <div key={projectInfo.toString()} className="aboutProject__info-block">
                                     <h3 className="info-block__title"> {projectInfo.projectInfoTitle}</h3>
                                     <p className="info-block__subtitle">{projectInfo.projectInfoSubtitle}</p>
                                 </div>
@@ -22,8 +22,8 @@ function AboutProject(props) {
 
                     <div className="aboutProject__timeline">
                         {
-                            aboutProjectData.aboutProjectTimeLine.map((timeLineBlock, index) => (
-                                <div key={index} className={`timelane__view ${timeLineBlock.timeLineBlockClass}`}>
+                            aboutProjectData.aboutProjectTimeLine.map((timeLineBlock) => (
+                                <div key={timeLineBlock.toString()} className={`timelane__view ${timeLineBlock.timeLineBlockClass}`}>
                                     <div className="timeline__process">
                                         <p className="timeline__title">{timeLineBlock.timeLineBlockTitle}</p>
                                     </div>

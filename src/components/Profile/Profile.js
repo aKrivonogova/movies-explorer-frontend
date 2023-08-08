@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../Context/Context";
 import { useFormWithValidation } from "../../utils/hooks/useFormValidation";
+import { emailPattern } from '../../utils/constants/emailPattern';
+
 import React from "react";
 import { updateUserInfo } from "../../utils/api/MainApi";
 import './Profile.css'
@@ -47,7 +49,7 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     useEffect(() => {
         if (currentUser)
             resetForm(currentUser);
-            setErrorMessage('');
+        setErrorMessage('');
     }, [currentUser, resetForm]);
 
     useEffect(() => {
@@ -72,7 +74,9 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                             </div>
                             <div className="profile__input-container">
                                 <p className="profile__input-name">E-mail</p>
-                                <input type="email" className="profile__input" onChange={handleChange} value={values.email ?? currentUser.email} disabled={isFormEditDisabled} name="email" />
+                                <input type="email"
+                                    pattern={emailPattern}
+                                    className="profile__input" onChange={handleChange} value={values.email ?? currentUser.email} disabled={isFormEditDisabled} name="email" />
                                 <span className="profile__input-error">{errors.email}</span>
                             </div>
                         </fieldset>

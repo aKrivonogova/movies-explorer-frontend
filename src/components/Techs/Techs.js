@@ -9,8 +9,8 @@ function Techs() {
                     <h1 className="techs__title">{techsData.techsTitle}</h1>
                     <p className="techs__subtitle">{techsData.techSibtitle}</p>
                     <ul className="techs__list">
-                        {techsData.techsList.map((techItem, index) => (
-                            <li key={index} className='techs__item'>{techItem}</li>
+                        {techsData.techsList.map((techItem) => (
+                            <li key={techItem.toString()} className='techs__item'>{techItem}</li>
                         ))}
                     </ul>
                 </div>

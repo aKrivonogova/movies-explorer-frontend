@@ -12,8 +12,8 @@ function Footer() {
                         <p className="footer__copyright">&copy; {footerData.footerYear}</p>
                         <ul className="footer__links">
                             {
-                                footerData.footerLinks.map((link, index) => (
-                                    <li key={index} className='footer__link-item'>
+                                footerData.footerLinks.map((link) => (
+                                    <li key={link.toString()} className='footer__link-item'>
                                         <a  rel="noreferrer" target="_blank" className='footer__link' href={link.footerLinkPath}>{link.footerLinkTitle}</a>
                                     </li>
                                 ))

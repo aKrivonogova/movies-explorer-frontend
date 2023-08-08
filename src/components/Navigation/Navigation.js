@@ -11,8 +11,8 @@ function Navigation(props) {
             <div className='header__content'>
                 <nav className={hederNavigationClass}>
                     {
-                        navigationLinks.map((pathItem, index) => (
-                            <Link key={index} to={pathItem.path} className='header__link'>{pathItem.pathName}</Link>
+                        navigationLinks.map((pathItem) => (
+                            <Link key={pathItem.toString()} to={pathItem.path} className='header__link'>{pathItem.pathName}</Link>
                         ))
                     }
                 </nav>

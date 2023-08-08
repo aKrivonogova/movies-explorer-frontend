@@ -24,8 +24,8 @@ function MobileMenu() {
                             <nav className="mobile-menu__navigation">
                                 <ul className='mobile-menu__links'>
                                     {
-                                        links.map((link, index) => (
-                                            <li key={index} className="mobile-menu__link-item">
+                                        links.map((link) => (
+                                            <li key={link.toString()} className="mobile-menu__link-item">
                                                 <NavLink
                                                     className={({ isActive }) => `mobile-menu__link ${isActive ? "mobile-menu__link_active" : ""}`}
                                                     to={link.linkPath}

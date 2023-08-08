@@ -9,8 +9,8 @@ function Portfolio() {
                     <h4 className="portfolio__title">{portfolioData.portfolioTitle}</h4>
                     <ul className="portfolio__list">
                         {
-                            portfolioData.portfolioList.map((portfolioItem, index) => (
-                                <li key={index} className="portfolio__item">
+                            portfolioData.portfolioList.map((portfolioItem) => (
+                                <li key={portfolioItem.toString()} className="portfolio__item">
                                     <a href={portfolioItem.jobLinkPath} alt="ссылка на работу" target='_blank' rel="noreferrer" className='portfolio__link'>
                                         <p className="portfolio__item-title">{portfolioItem.jobName}</p>
                                         <img src={arrowImage} alt="стрелка" className="portfolio__item-arrow" />

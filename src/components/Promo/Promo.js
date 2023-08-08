@@ -11,8 +11,8 @@ function Promo(props) {
                     </h1>
                     <ul className="promo__links">
                         {
-                            promoData.promoLinks.map((link, index) => (
-                                <NavTab key={index} linkName={link.linkName} linkPath={link.linkPath} />
+                            promoData.promoLinks.map((link) => (
+                                <NavTab key={link.toString()} linkName={link.linkName} linkPath={link.linkPath} />
                             ))
                         }
                     </ul>

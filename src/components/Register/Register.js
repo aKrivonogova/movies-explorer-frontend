@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../utils/hooks/useFormValidation';
 import { register, login } from '../../utils/api/MainApi';
 import { useNavigate } from 'react-router-dom';
+import { emailPattern } from '../../utils/constants/emailPattern';
+
 
 import './Register.css'
-function Register({setIsLoggedIn}) {
+function Register({ setIsLoggedIn }) {
 
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const [errorMessage, setErrorMessage] = useState('');
@@ -18,46 +20,46 @@ function Register({setIsLoggedIn}) {
     }
 
     const handleRegister = ({ name, password, email }) => {
-    register(name, password, email)
-        .then((res) => {
-            if (res.status !== 400) {
-                handleLogin({ password, email });
-                setErrorMessage(`Регистрация прошла успешно!`);
-            }
+        register(name, password, email)
+            .then((res) => {
+                if (res.status !== 400) {
+                    handleLogin({ password, email });
+                    setErrorMessage(`Регистрация прошла успешно!`);
+                }
             })
             .catch((error) => {
-            if (error.status === 400) {
-                setErrorMessage('Введены неверные данные пользователя.');
-            }
-            if (error.status === 409) {
-                setErrorMessage('Пользователь с таким email уже существует');
-            }
-            else {
-                setErrorMessage('Что-то пошло не так...')
-            }
-        })
+                if (error.status === 400) {
+                    setErrorMessage('Введены неверные данные пользователя.');
+                }
+                if (error.status === 409) {
+                    setErrorMessage('Пользователь с таким email уже существует');
+                }
+                else {
+                    setErrorMessage('Что-то пошло не так...')
+                }
+            })
     }
 
     const handleLogin = ({ password, email }) => {
         login(password, email)
-          .then((res) => {
-            if (res.token) {
-              localStorage.setItem('jwt', res.token);
-              setIsLoggedIn(true);
-              navigate('/movies', { replace: true });
-            }
-          })
-          .catch((error) => {
-            if (error.status === 400) {
-              setErrorMessage('Введены неверные данные пользователя.');
-            }
-            if (error.status === 401) {
-              setErrorMessage('Пользователь с таким email не существует');
-            }
-            else {
-              setErrorMessage('Что-то пошло не так...')
-            }
-          })
+            .then((res) => {
+                if (res.token) {
+                    localStorage.setItem('jwt', res.token);
+                    setIsLoggedIn(true);
+                    navigate('/movies', { replace: true });
+                }
+            })
+            .catch((error) => {
+                if (error.status === 400) {
+                    setErrorMessage('Введены неверные данные пользователя.');
+                }
+                if (error.status === 401) {
+                    setErrorMessage('Пользователь с таким email не существует');
+                }
+                else {
+                    setErrorMessage('Что-то пошло не так...')
+                }
+            })
     }
 
     return (
@@ -80,6 +82,7 @@ function Register({setIsLoggedIn}) {
                                 name="email"
                                 value={values.email || ''}
                                 onChange={handleChange}
+                                pattern={emailPattern}
                                 placeholder='E-mail' required />
                             <span className="register__error auth__error">{errors.email}</span>
                             <p className="register__input-name auth__input-name">Пароль</p>

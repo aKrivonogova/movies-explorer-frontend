@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../Context/Context";
 import { useFormWithValidation } from "../../hooks/useFormValidation";
 import { emailPattern } from '../../utils/constants/emailPattern';
+import PopupMessage from '../PopupMessage/PopupMessage';
+import * as statusMessage from '../../utils/constants/statusMessage'
 
 import React from "react";
 import { updateUserInfo } from "../../utils/api/MainApi";
@@ -12,11 +14,25 @@ import './Profile.css'
 
 function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     const navigate = useNavigate();
+    const [isOpenPopupMessage, setIsOpenPopupMessage] = useState(false);
+    const [infoPopupMessage, setInfoPopupMessage] = useState({
+        image: null,
+        text: null
+    })
+    const [imagePopup, setImagePopup] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const { values, handleChange, errors, isValid, setIsValid, resetForm } = useFormWithValidation();
     const currentUser = useContext(CurrentUserContext);
 
     const [isFormEditDisabled, setIsFormEditDisabled] = useState(true);
+
+    const handleOpenPopupMessage = () => {
+        setIsOpenPopupMessage(true);
+    }
+
+    const handleClosePopupMessage = () => {
+        setIsOpenPopupMessage(false);
+    }
 
     const handleEditProfileClick = (event) => {
         event.preventDefault();
@@ -31,11 +47,20 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     const onUpdateUser = ({ name, email }) => {
         updateUserInfo(name, email).then((res) => {
             setCurrentUser(res);
-            setErrorMessage('Обновление прошло успешно!');
+            handleOpenPopupMessage();
+            setInfoPopupMessage({
+                image: statusMessage.successfullyStatus.image,
+                text: statusMessage.successfullyStatus.text
+            })
             setIsFormEditDisabled(true);
         })
             .catch((err) => {
-                setErrorMessage(err);
+                handleOpenPopupMessage();
+                setInfoPopupMessage({
+                    image: statusMessage.errorStatus.image,
+                    text: statusMessage.errorStatus.text
+                })
+                setIsFormEditDisabled(true);
             })
     }
 
@@ -87,9 +112,6 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                             </button>
                         ) : (
                             <>
-                                <span className={'profile__form-error '}>
-                                    {errorMessage}
-                                </span>
                                 <button className="profile__button profile__button_type_save" onClick={handleUpdateUser} disabled={!isValid}>
                                     Сохранить
                                 </button>
@@ -99,6 +121,7 @@ function Profile({ isLoggedIn, setIsLoggedIn, setCurrentUser }) {
                     <Link to="/" onClick={handleLogOut} className={isFormEditDisabled ? 'profile__signout-link' : 'profile__signout-link profile__signout-link-hidden'}>Выйти из аккаунта</Link>
                 </div>
             </section>
+            <PopupMessage isOpenPopupMessage={isOpenPopupMessage} message={infoPopupMessage} onClosePopupMessage={handleClosePopupMessage} />
         </>
     )
 }

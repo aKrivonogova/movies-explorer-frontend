@@ -67,6 +67,7 @@ function SavedMovies({ isLoggedIn }) {
     useEffect(() => {
         setInitialSearch("");
         onSearch({ movieSearch: "" });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -79,6 +80,7 @@ function SavedMovies({ isLoggedIn }) {
         }
 
         setMoviesToDisplay([...movies]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isDurationFilterActive, foundMovies]);
 
     return (

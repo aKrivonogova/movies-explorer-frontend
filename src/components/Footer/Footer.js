@@ -1,6 +1,6 @@
 import "./Footer.css";
 function Footer() {
-    let footerData = require("../../resources/footerData.json");
+    const footerData = require("../../resources/footerData.json");
     return (
         <>
             <footer className="footer">

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function NotFound() {
     const navigate = useNavigate();
-    let notFoundInfo = require('../../resources/notFoundSection.json');
+    const notFoundInfo = require('../../resources/notFoundSection.json');
     return (
         <>
             <section className="not-found">

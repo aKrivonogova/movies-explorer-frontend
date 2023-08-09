@@ -71,7 +71,7 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
         const id = isMoviesPage ? cardMovie.id : cardMovie.movieId;
 
         deleteCard(id)
-            .then((deletedMovie) => {
+            .then(() => {
                 onDelete(id);
             })
             .catch((err) => {
@@ -87,6 +87,7 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
 
     useEffect(() => {
         setIsInFavorites(calculateIsInFavorites());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [savedMovies]);
 
     return (

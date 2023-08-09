@@ -87,6 +87,7 @@ function Profile({ isLoggedIn, setIsLoggedIn }) {
         ) {
             resetForm(values, {}, false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [values]);
 
     return (

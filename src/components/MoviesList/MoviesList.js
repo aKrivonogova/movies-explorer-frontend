@@ -3,6 +3,7 @@ import {
     SCREEN_SIZE_REGULAR,
     SCREEN_SIZE_MIDDLE,
 } from "../../utils/constants/breakpoints";
+import { NUMBER_OF_CARDS_ON_REGULAR_SCREEN_LOAD_MORE, NUMBER_OF_CARDS_ON_FULL_SCREEN_LOAD_MORE, NUMBER_OF_CARDS_ON_REGULAR_SCREEN, NUMBER_OF_CARDS_ON_MIDDLE_SCREEN, NUMBER_OF_CARDS_ON_SMALL_SCREEN, } from '../../utils/constants/numberOfCards';
 import { useLocation } from "react-router-dom";
 import "./MoviesList.css";
 import { useEffect, useState } from "react";
@@ -22,18 +23,18 @@ function MoviesList({
 
     const getNumberOfMoviesToDisplay = () => {
         if (window.innerWidth >= SCREEN_SIZE_REGULAR) {
-            return 12;
+            return NUMBER_OF_CARDS_ON_REGULAR_SCREEN;
         }
         if (window.innerWidth >= SCREEN_SIZE_MIDDLE) {
-            return 8;
+            return NUMBER_OF_CARDS_ON_MIDDLE_SCREEN;
         }
         if (window.innerWidth < SCREEN_SIZE_MIDDLE) {
-            return 5;
+            return NUMBER_OF_CARDS_ON_SMALL_SCREEN;
         }
     };
 
     const getNumberOfMoviesToAdd = () => {
-        return window.innerWidth >= SCREEN_SIZE_REGULAR ? 3 : 2;
+        return window.innerWidth >= SCREEN_SIZE_REGULAR ? NUMBER_OF_CARDS_ON_FULL_SCREEN_LOAD_MORE : NUMBER_OF_CARDS_ON_REGULAR_SCREEN_LOAD_MORE;
     };
 
     const prepareData = (numberOfMoviesToDisplay) => {
@@ -85,11 +86,13 @@ function MoviesList({
         );
     };
 
+    console.log('moviesToDisplay', moviesToDisplay);
+
     const CardList = () => {
         if (moviesToDisplay.length > 0) {
             return moviesToDisplay.map((movieItem) => (
                 <MoviesCard
-                    key={movieItem.id}
+                    key={movieItem.id ? movieItem.id : movieItem._id}
                     cardMovie={movieItem}
                     savedMovies={savedMovies}
                     onSave={onSave}
@@ -117,6 +120,7 @@ function MoviesList({
     useEffect(() => {
         const numberOfMoviesToDisplay = getNumberOfMoviesToDisplay();
         prepareData(numberOfMoviesToDisplay);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [movies]);
 
     return (

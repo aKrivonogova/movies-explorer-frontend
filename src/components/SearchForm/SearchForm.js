@@ -7,6 +7,7 @@ function SearchForm({
     onSearch,
     onDisplayShortMovies,
     durationFlag,
+    isRequestProcessing
 }) {
     const [movieSearch, setMovieSearch] = useState("");
     const [searchErrorMessage, setSearchErrorMessage] = useState("");
@@ -65,7 +66,10 @@ function SearchForm({
                                     {searchErrorMessage}
                                 </span>
                             </fieldset>
-                            <button className="search__button"></button>
+                            <button
+                                className="search__button"
+                                disabled={isRequestProcessing}
+                            ></button>
                         </div>
                         <FilterCheckbox
                             handleShortMoviesCheckboxClick={

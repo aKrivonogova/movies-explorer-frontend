@@ -3,7 +3,13 @@ import {
     SCREEN_SIZE_REGULAR,
     SCREEN_SIZE_MIDDLE,
 } from "../../utils/constants/breakpoints";
-import { NUMBER_OF_CARDS_ON_REGULAR_SCREEN_LOAD_MORE, NUMBER_OF_CARDS_ON_FULL_SCREEN_LOAD_MORE, NUMBER_OF_CARDS_ON_REGULAR_SCREEN, NUMBER_OF_CARDS_ON_MIDDLE_SCREEN, NUMBER_OF_CARDS_ON_SMALL_SCREEN, } from '../../utils/constants/numberOfCards';
+import {
+    NUMBER_OF_CARDS_ON_REGULAR_SCREEN_LOAD_MORE,
+    NUMBER_OF_CARDS_ON_FULL_SCREEN_LOAD_MORE,
+    NUMBER_OF_CARDS_ON_REGULAR_SCREEN,
+    NUMBER_OF_CARDS_ON_MIDDLE_SCREEN,
+    NUMBER_OF_CARDS_ON_SMALL_SCREEN,
+} from "../../utils/constants/numberOfCards";
 import { useLocation } from "react-router-dom";
 import "./MoviesList.css";
 import { useEffect, useState } from "react";
@@ -34,7 +40,9 @@ function MoviesList({
     };
 
     const getNumberOfMoviesToAdd = () => {
-        return window.innerWidth >= SCREEN_SIZE_REGULAR ? NUMBER_OF_CARDS_ON_FULL_SCREEN_LOAD_MORE : NUMBER_OF_CARDS_ON_REGULAR_SCREEN_LOAD_MORE;
+        return window.innerWidth >= SCREEN_SIZE_REGULAR
+            ? NUMBER_OF_CARDS_ON_FULL_SCREEN_LOAD_MORE
+            : NUMBER_OF_CARDS_ON_REGULAR_SCREEN_LOAD_MORE;
     };
 
     const prepareData = (numberOfMoviesToDisplay) => {
@@ -86,7 +94,7 @@ function MoviesList({
         );
     };
 
-    console.log('moviesToDisplay', moviesToDisplay);
+    console.log("moviesToDisplay", moviesToDisplay);
 
     const CardList = () => {
         if (moviesToDisplay.length > 0) {

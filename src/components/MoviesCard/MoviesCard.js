@@ -4,6 +4,7 @@ import { saveNewMovie, deleteCard } from "../../utils/api/MainApi";
 import { useEffect, useState } from "react";
 function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
     const [isInFavorites, setIsInFavorites] = useState(false);
+    const [isRequestProcessing, setIsRequestProcessing] = useState(false);
 
     const calculateIsInFavorites = () => {
         return !!(savedMovies.length > 0
@@ -23,11 +24,18 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
         return (
             <button
                 className={className}
-                onClick={
-                    isInFavorites ? removeCardFromFavorites : addCardToFavorites
-                }
+                disabled={isRequestProcessing}
+                onClick={manageFavorites}
             ></button>
         );
+    };
+
+    const manageFavorites = async () => {
+        setIsRequestProcessing(true);
+        isInFavorites
+            ? await removeCardFromFavorites()
+            : await addCardToFavorites();
+        setIsRequestProcessing(false);
     };
 
     const DeleteMovieButton = () => {
@@ -43,40 +51,36 @@ function MoviesCard({ cardMovie, savedMovies, onSave, onDelete }) {
         return `https://api.nomoreparties.co${imageLocalPath}`;
     };
 
-    const addCardToFavorites = () => {
-        const payload = {
-            country: cardMovie.country,
-            director: cardMovie.director,
-            duration: cardMovie.duration,
-            year: cardMovie.year,
-            description: cardMovie.description,
-            image: bringToFormatUrl(cardMovie.image.url),
-            trailerLink: cardMovie.trailerLink,
-            nameRU: cardMovie.nameRU,
-            nameEN: cardMovie.nameEN,
-            thumbnail: bringToFormatUrl(cardMovie.image.formats.thumbnail.url),
-            movieId: cardMovie.id,
-        };
-
-        saveNewMovie(payload)
-            .then((newMovie) => {
-                onSave(newMovie);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+    const addCardToFavorites = async () => {
+        try {
+            const payload = {
+                country: cardMovie.country,
+                director: cardMovie.director,
+                duration: cardMovie.duration,
+                year: cardMovie.year,
+                description: cardMovie.description,
+                image: bringToFormatUrl(cardMovie.image.url),
+                trailerLink: cardMovie.trailerLink,
+                nameRU: cardMovie.nameRU,
+                nameEN: cardMovie.nameEN,
+                thumbnail: bringToFormatUrl(cardMovie.image.formats.thumbnail.url),
+                movieId: cardMovie.id,
+            };
+            const newMovie = await saveNewMovie(payload)
+            onSave(newMovie);
+        } catch(err) {
+            console.error(err);
+        }
     };
 
-    const removeCardFromFavorites = () => {
-        const id = isMoviesPage ? cardMovie.id : cardMovie.movieId;
-
-        deleteCard(id)
-            .then(() => {
-                onDelete(id);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+    const removeCardFromFavorites = async () => {
+        try {
+            const id = isMoviesPage ? cardMovie.id : cardMovie.movieId;
+            await deleteCard(id)
+            onDelete(id);
+        } catch(err) {
+            console.error(err);
+        }
     };
 
     const convertTime = (mins) => {

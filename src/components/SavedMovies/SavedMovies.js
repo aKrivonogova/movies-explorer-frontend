@@ -87,6 +87,7 @@ function SavedMovies({ isLoggedIn }) {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <SearchForm
+                isRequestProcessing={isLoading}
                 initialSearch={initialSearch}
                 onSearch={onSearch}
                 durationFlag={isDurationFilterActive}

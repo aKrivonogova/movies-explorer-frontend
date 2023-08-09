@@ -1,10 +1,15 @@
-.register__submit-button{
+.register__submit-button {
     margin-top: 142px;
     margin-bottom: 16px;
 }
 
+.register__submit-button:disabled {
+    background: #F8F8F8;
+    color: #C2C2C2;
+}
+
 @media screen and (max-width: 425px) {
-    .register__submit-button{
+    .register__submit-button {
         margin-top: 222px;
     }
 }

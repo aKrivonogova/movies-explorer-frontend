@@ -1,63 +1,111 @@
-import './App.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Profile from '../Profile/Profile';
-import Login from '../Login/Login';
-import NotFound from '../NotFound/NotFound';
-import Register from '../Register/Register';
-import Header from '../Header/Header';
-import { useEffect, useState } from 'react';
-import MobileMenu from '../MobileMenu/MobileMenu';
-import Footer from '../Footer/Footer';
+import "./App.css";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Main from "../Main/Main";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
+import NotFound from "../NotFound/NotFound";
+import Register from "../Register/Register";
+import CurrentUserContext from "../Context/Context";
+import ProtectedRouteElement from "../ProtectedRouteElement/ProtectedRouteElement";
+import * as MainApi from "../../utils/api/MainApi";
+
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [currentUser, setCurrentUser] = useState({});
 
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const showHeaderElement = ['/movies', '/saved-movies', '/', '/profile', ''].includes(
-    location.pathname
-  );
-  const showFooterElement = ['/movies', '/saved-movies', '/'].includes(
-    location.pathname
-  );
+    const getUser = () => {
+        const jwt = localStorage.getItem("jwt");
+        if (!jwt) {
+            setIsLoggedIn(false);
+            return;
+        }
+        MainApi.getContent(jwt)
+            .then((res) => {
+                setCurrentUser(res);
+                setIsLoggedIn(true);
+            })
+            .catch((error) => {
+                setIsLoggedIn(false);
+                console.log(error);
+            });
+    };
 
-  const protectedRoutes = ['/movies', '/saved-movies', '/profile', ''];
+    useEffect(() => {
+        getUser();
+    }, []);
 
-  useEffect(() => {
-    protectedRoutes.includes(location.pathname) ? setLoggedIn(true) : setLoggedIn(false);
-  })
+    useEffect(() => {
+        if (isLoggedIn) {
+            getUser();
+        }
+    }, [isLoggedIn]);
 
-
-  function handleOpenMenu() {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  }
-
-  function handleCloseMobileMenu() {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  }
-
-
-  return (
-    <div className="App">
-      {showHeaderElement && <Header loggedIn={loggedIn} handleOpenMenu={handleOpenMenu} />}
-      <main className='main'>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies locationPath={location.pathname} isLoading={isLoading} />} />
-          <Route path="/saved-movies" element={<SavedMovies locationPath={location.pathname} />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        </Routes>
-        {loggedIn ? <MobileMenu isMobileMenuOpen={isMobileMenuOpen} handleCloseMobileMenu={handleCloseMobileMenu} /> : null}
-      </main>
-      {showFooterElement && <Footer />}
-    </div >
-  );
+    return (
+        <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+            <div className="App">
+                <main className="main">
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Main isLoggedIn={isLoggedIn} />}
+                        />
+                        <Route
+                            path="/movies"
+                            element={
+                                <ProtectedRouteElement
+                                    element={Movies}
+                                    isLoggedIn={isLoggedIn}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/saved-movies"
+                            element={
+                                <ProtectedRouteElement
+                                    element={SavedMovies}
+                                    isLoggedIn={isLoggedIn}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <ProtectedRouteElement
+                                    element={Profile}
+                                    isLoggedIn={isLoggedIn}
+                                    setIsLoggedIn={setIsLoggedIn}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/signin"
+                            element={
+                                isLoggedIn ? (
+                                    <Navigate to="/movies" replace />
+                                ) : (
+                                    <Login setIsLoggedIn={setIsLoggedIn} />
+                                )
+                            }
+                        />
+                        <Route
+                            path="/signup"
+                            element={
+                                isLoggedIn ? (
+                                    <Navigate to="/movies" replace />
+                                ) : (
+                                    <Register setIsLoggedIn={setIsLoggedIn} />
+                                )
+                            }
+                        />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </main>
+            </div>
+        </CurrentUserContext.Provider>
+    );
 }
 
 export default App;

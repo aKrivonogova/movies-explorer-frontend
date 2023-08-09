@@ -56,7 +56,7 @@
     transition: opacity 0.2s ease-in;
 }
 
-.movies__card-button:hover{
+.movies__card-button:hover {
     cursor: pointer;
     opacity: 0.8;
 }

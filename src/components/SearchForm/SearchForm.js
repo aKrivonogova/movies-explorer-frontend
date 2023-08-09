@@ -1,23 +1,86 @@
-import searchLogo from "../../images/searchLogo.svg"
-import './SearchForm.css'
+import searchLogo from "../../images/searchLogo.svg";
+import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-function SearchForm() {
+import { useEffect, useState } from "react";
+function SearchForm({
+    initialSearch,
+    onSearch,
+    onDisplayShortMovies,
+    durationFlag,
+    isRequestProcessing
+}) {
+    const [movieSearch, setMovieSearch] = useState("");
+    const [searchErrorMessage, setSearchErrorMessage] = useState("");
+
+    const isFormValid = () => {
+        return movieSearch.length >= 1;
+    };
+
+    const handleShortMoviesCheckboxClick = () => {
+        onDisplayShortMovies(!durationFlag);
+    };
+
+    const handleSearchInput = (event) => {
+        setMovieSearch(event.target.value);
+        setSearchErrorMessage("");
+    };
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        if (isFormValid()) {
+            onSearch({ movieSearch: movieSearch });
+        } else {
+            setSearchErrorMessage("Необходимо ввести ключевое слово");
+        }
+    };
+
+    useEffect(() => {
+        if (initialSearch !== "") {
+            setMovieSearch(initialSearch);
+        }
+    }, [initialSearch]);
+
     return (
         <>
-            <section class="search">
+            <section className="search">
                 <div className="search__container">
-                    <form class="search__form">
+                    <form
+                        className="search__form"
+                        onSubmit={handleSearchSubmit}
+                    >
                         <div className="search__content">
-                            <img src={searchLogo} alt="лого лупа" class="search__logo" />
-                            <input type="text" class="search__input" placeholder="Фильм" />
-                            <button class="search__button"></button>
+                            <img
+                                src={searchLogo}
+                                alt="лого лупа"
+                                className="search__logo"
+                            />
+                            <fieldset className="search__feilds">
+                                <input
+                                    type="text"
+                                    className="search__input"
+                                    placeholder="Фильм"
+                                    onChange={handleSearchInput}
+                                    value={movieSearch}
+                                />
+                                <span className="search__input-error">
+                                    {searchErrorMessage}
+                                </span>
+                            </fieldset>
+                            <button
+                                className="search__button"
+                                disabled={isRequestProcessing}
+                            ></button>
                         </div>
-                        <FilterCheckbox></FilterCheckbox>
+                        <FilterCheckbox
+                            handleShortMoviesCheckboxClick={
+                                handleShortMoviesCheckboxClick
+                            }
+                            checkboxValue={durationFlag}
+                        />
                     </form>
                 </div>
             </section>
-
         </>
-    )
+    );
 }
 export default SearchForm;

@@ -2,21 +2,25 @@
     "aboutProjectHeading": "О проекте",
     "aboutProject": [
         {
+            "id": 1,
             "projectInfoTitle": "Дипломный проект включал 5 этапов",
             "projectInfoSubtitle": "Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки."
         },
         {
+            "id": 34,
             "projectInfoTitle": "На выполнение диплома ушло 5 недель",
             "projectInfoSubtitle": "У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься."
         }
     ],
     "aboutProjectTimeLine": [
         {
+            "id": 992,
             "timeLineBlockClass": "timelane__view_backend",
             "timeLineBlockTitle": "1 неделя",
             "timeLineBlockSubtitle": "Back-end"
         },
         {
+            "id": 993,
             "timeLineBlockClass": "timelane__view_frontend",
             "timeLineBlockTitle": "4 недели",
             "timeLineBlockSubtitle": "Front-end"

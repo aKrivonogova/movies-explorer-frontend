@@ -2,16 +2,19 @@
     "portfolioTitle": "Портфолио",
     "portfolioList": [
         {
+            "id": 6,
             "jobName": "Статичный сайт",
-            "jobLinkPath": "https://github.com/"
+            "jobLinkPath": "https://github.com/aKrivonogova/how-to-learn"
         },
         {
+            "id": 7,
             "jobName": "Адаптивный сайт",
-            "jobLinkPath": "https://github.com/"
+            "jobLinkPath": "https://github.com/aKrivonogova/russian-travel"
         },
         {
+            "id": 8,
             "jobName": "Одностраничное приложение",
-            "jobLinkPath": "https://github.com/"
+            "jobLinkPath": "https://github.com/aKrivonogova/react-mesto-api-full-gha"
         }
     ]
 }

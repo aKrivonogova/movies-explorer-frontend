@@ -4,6 +4,15 @@
     padding-bottom: 80px;
 }
 
+.movies:not(.movies__card-list:not(.movies__card-item)) {
+    padding-bottom: 0;
+}
+
+.movies__message {
+    color: #FFF;
+    text-align: center;
+}
+
 .movies__card-list {
     list-style: none;
     margin-top: 0;
@@ -18,6 +27,12 @@
     padding-top: 80px;
     padding-bottom: 30px;
     border-top: 1px solid #424242;
+}
+
+
+.movies__card-list:not(.movies__card-item) {
+    padding-bottom: 0;
+    padding-top: 50px;
 }
 
 .show-more__button_visible {
@@ -39,10 +54,11 @@
 
 
 
-.show-more__button_visible:hover{
+.show-more__button_visible:hover {
     opacity: 0.6;
     cursor: pointer;
 }
+
 .movies__show-more {
     margin-top: 50px;
     display: flex;

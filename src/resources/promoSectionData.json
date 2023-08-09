@@ -2,14 +2,17 @@
     "promoTitle": "Учебный проект студента факультета Веб-разработки.",
     "promoLinks": [
         {
+            "id": 9,
             "linkName": "О проекте",
             "linkPath": "#aboutProject"
         },
         {
+            "id": 10,
             "linkName": "Технологии",
             "linkPath": "#techs"
         },
         {
+            "id": 11,
             "linkName": "Студент",
             "linkPath": "#aboutMe"
         }

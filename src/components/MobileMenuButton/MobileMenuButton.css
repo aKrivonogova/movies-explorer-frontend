@@ -8,6 +8,7 @@
         width: 44px;
         height: 44px;
         background-color: transparent;
+        background-repeat: no-repeat;
         background-image: url('../../images/burgerButton.svg');
         border: none;
         display: block;
@@ -16,7 +17,7 @@
 
     }
 
-    .mobile-menu__burger-button:hover{
+    .mobile-menu__burger-button:hover {
         opacity: 0.6;
         cursor: pointer;
     }

@@ -1,24 +1,32 @@
-import './Navigation.css';
+import "./Navigation.css";
 import React from "react";
-import { Link } from 'react-router-dom';
-import * as routes from '../../utils/links';
+import { Link } from "react-router-dom";
+import * as routes from "../../utils/constants/links";
 
 function Navigation(props) {
-    const hederNavigationClass = `header__navigation ${props.loggedIn ? ('authorized') : ('no-authorized')}`;
-    const navigationLinks = props.loggedIn ? routes.protectedRoutes : routes.authRoutes;
+    const hederNavigationClass = `header__navigation ${
+        props.isLoggedIn ? "authorized" : "no-authorized"
+    }`;
+    const navigationLinks = props.isLoggedIn
+        ? routes.protectedRoutes
+        : routes.authRoutes;
     return (
         <>
-            <div className='header__content'>
+            <div className="header__content">
                 <nav className={hederNavigationClass}>
-                    {
-                        navigationLinks.map((pathItem, index) => (
-                            <Link key={index} to={pathItem.path} className='header__link'>{pathItem.pathName}</Link>
-                        ))
-                    }
+                    {navigationLinks.map((pathItem) => (
+                        <Link
+                            key={pathItem.id}
+                            to={pathItem.path}
+                            className="header__link"
+                        >
+                            {pathItem.pathName}
+                        </Link>
+                    ))}
                 </nav>
             </div>
         </>
-    )
+    );
 }
 
 export default Navigation;

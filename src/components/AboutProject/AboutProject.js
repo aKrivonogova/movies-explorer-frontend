@@ -1,7 +1,7 @@
 import './AboutProject.css'
 
 function AboutProject(props) {
-    let aboutProjectData = require('../../resources/aboutProjectSectionData.json');
+    const aboutProjectData = require('../../resources/aboutProjectSectionData.json');
     return (
         <>
             <section className="aboutProject section" id='aboutProject'>

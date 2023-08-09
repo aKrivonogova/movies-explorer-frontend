@@ -114,7 +114,7 @@
     bottom: 20%;
     width: 100%;
     text-align: center;
- }
+}
 
 .profile__form-error-hidden {
     display: none;
@@ -144,7 +144,6 @@
 .profile__button {
     cursor: pointer;
 }
-
 
 .profile__button_type_edit:hover {
     color: #CBCBCB;
@@ -240,6 +239,4 @@
     .profile__button_type_edit {
         margin-top: 379px;
     }
-
-  
 }

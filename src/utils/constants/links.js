@@ -1,31 +1,25 @@
-export const authRoutes = [
-    {
+export const authRoutes = [{
         id: 15,
-        path: '/signup',
-        pathName: 'Регистрация'
-    },
-    {
+        path: "/signup",
+        pathName: "Регистрация",
+    }, {
         id: 16,
-        path: '/signin',
-        pathName: 'Войти'
-    }
-]
+        path: "/signin",
+        pathName: "Войти",
+    },
+];
 
-export const protectedRoutes = [
-    {
+export const protectedRoutes = [{
         id: 17,
-        path: '/movies',
-        pathName: 'Фильмы'
-    },
-    {
+        path: "/movies",
+        pathName: "Фильмы",
+    }, {
         id: 18,
-        path: '/saved-movies',
-        pathName: 'Сохраненные фильмы'
-    },
-    {
+        path: "/saved-movies",
+        pathName: "Сохраненные фильмы",
+    }, {
         id: 19,
-        path: '/profile',
-        pathName: 'Аккаунт'
-    }
-]
-
+        path: "/profile",
+        pathName: "Аккаунт",
+    },
+];

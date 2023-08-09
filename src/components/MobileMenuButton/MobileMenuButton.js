@@ -1,11 +1,14 @@
-import './MobileMenuButton.css'
+import "./MobileMenuButton.css";
 
 function MobileMenuButton({ handleOpenMobileMenu }) {
     return (
         <>
-            <button onClick={handleOpenMobileMenu} className="mobile-menu__burger-button"></button>
+            <button
+                onClick={handleOpenMobileMenu}
+                className="mobile-menu__burger-button"
+            ></button>
         </>
-    )
+    );
 }
 
-export default MobileMenuButton; 
+export default MobileMenuButton;

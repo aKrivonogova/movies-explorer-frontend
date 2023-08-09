@@ -3,7 +3,6 @@ import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesList from "../MoviesList/MoviesList";
 import Preloader from "../Preloader/Preloader";
-import { useLocation } from 'react-router-dom';
 import { useMoviesFiltration } from "../../hooks/useMoviesFiltration"
 import { useEffect, useState } from 'react';
 import { getSavedMovies } from '../../utils/api/MainApi';

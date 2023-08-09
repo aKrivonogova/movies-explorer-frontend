@@ -17,7 +17,7 @@
 
     }
 
-    .mobile-menu__burger-button:hover{
+    .mobile-menu__burger-button:hover {
         opacity: 0.6;
         cursor: pointer;
     }

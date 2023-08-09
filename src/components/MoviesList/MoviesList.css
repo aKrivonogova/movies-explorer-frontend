@@ -4,7 +4,7 @@
     padding-bottom: 80px;
 }
 
-.movies:not(.movies__card-list:not(.movies__card-item)){
+.movies:not(.movies__card-list:not(.movies__card-item)) {
     padding-bottom: 0;
 }
 
@@ -30,10 +30,11 @@
 }
 
 
-.movies__card-list:not(.movies__card-item){
+.movies__card-list:not(.movies__card-item) {
     padding-bottom: 0;
     padding-top: 50px;
 }
+
 .show-more__button_visible {
     width: 320px;
     height: 36px;
@@ -53,10 +54,11 @@
 
 
 
-.show-more__button_visible:hover{
+.show-more__button_visible:hover {
     opacity: 0.6;
     cursor: pointer;
 }
+
 .movies__show-more {
     margin-top: 50px;
     display: flex;

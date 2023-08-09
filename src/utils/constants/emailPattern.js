@@ -1,1 +1,1 @@
-export const emailPattern = "^([^ ]+@[^ ]+\\.[a-z]{2,6}|)$";
+export const EMAIL_PATTERT = "^([^ ]+@[^ ]+\\.[a-z]{2,6}|)$";

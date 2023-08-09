@@ -1,3 +1,5 @@
+import { DURATION } from '../utils/constants/duration'
+
 export function useMoviesFiltration() {
     const findMoviesByName = (movies, name) => {
         return movies.filter(
@@ -7,7 +9,7 @@ export function useMoviesFiltration() {
         );
     };
 
-    const filterMoviesByDuration = (movies, duration = 40) => {
+    const filterMoviesByDuration = (movies, duration = DURATION) => {
         return movies.filter((movie) => movie.duration <= duration);
     };
 

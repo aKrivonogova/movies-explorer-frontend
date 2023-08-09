@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../Context/Context";
 import { useFormWithValidation } from "../../hooks/useFormValidation";
-import { emailPattern } from "../../utils/constants/emailPattern";
+import { EMAIL_PATTERT } from "../../utils/constants/emailPattern";
 import PopupMessage from "../PopupMessage/PopupMessage";
 import * as statusMessage from "../../utils/constants/statusMessage";
 
@@ -119,7 +119,7 @@ function Profile({ isLoggedIn, setIsLoggedIn }) {
                                 <p className="profile__input-name">E-mail</p>
                                 <input
                                     type="email"
-                                    pattern={emailPattern}
+                                    pattern={EMAIL_PATTERT}
                                     className="profile__input"
                                     onChange={handleChange}
                                     value={values.email ?? currentUser.email}

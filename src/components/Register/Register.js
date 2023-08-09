@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useFormWithValidation } from "../../hooks/useFormValidation";
 import { register, login } from "../../utils/api/MainApi";
 import { useNavigate } from "react-router-dom";
-import { emailPattern } from "../../utils/constants/emailPattern";
+import { EMAIL_PATTERT } from "../../utils/constants/emailPattern";
 
 import "./Register.css";
 function Register({ setIsLoggedIn }) {
@@ -97,7 +97,7 @@ function Register({ setIsLoggedIn }) {
                                 name="email"
                                 value={values.email || ""}
                                 onChange={handleChange}
-                                pattern={emailPattern}
+                                pattern={EMAIL_PATTERT}
                                 placeholder="E-mail"
                                 required
                             />

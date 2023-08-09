@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useFormWithValidation } from "../../hooks/useFormValidation";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../utils/api/MainApi";
-import { emailPattern } from "../../utils/constants/emailPattern";
+import { EMAIL_PATTERT } from "../../utils/constants/emailPattern";
 import "./Login.css";
 function Login({ setIsLoggedIn }) {
     const navigate = useNavigate();
@@ -58,7 +58,7 @@ function Login({ setIsLoggedIn }) {
                             value={values.email || ""}
                             onChange={handleChange}
                             name="email"
-                            pattern={emailPattern}
+                            pattern={EMAIL_PATTERT}
                         />
                         <span className="login__error auth__error">
                             {errors.email}
